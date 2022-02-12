@@ -1,0 +1,13 @@
+.header{
+    background-color: #DCDCDF;
+}
+.header-content{
+    padding: 20px;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    border-radius: 50%;
+}

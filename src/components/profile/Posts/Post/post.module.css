@@ -1,0 +1,18 @@
+.post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.text {
+    font-size: 20px;
+    color: black
+}

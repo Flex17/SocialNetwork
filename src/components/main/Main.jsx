@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from '../page/Profile'
+import Profile from '../profile/Profile'
 import SideBar from '../sidebar/Sidebar'
 
 
@@ -11,7 +11,7 @@ const Main = () => {
         <div className="main">
             <div className="main-content">
                 <SideBar />
-                <Page />
+                <Profile />
             </div>
         </div>
     )

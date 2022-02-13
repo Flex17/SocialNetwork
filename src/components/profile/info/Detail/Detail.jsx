@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from './Detail.module.css'
+import classes from './detail.module.css'
 
 const Detail = (props) => {
     return (

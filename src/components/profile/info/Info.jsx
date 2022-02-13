@@ -1,7 +1,7 @@
 import React from "react";
 import Detail from "./Detail/Detail";
 
-import classes from './Info.module.css'
+import classes from './info.module.css'
 
 const Info = () => {
     return (

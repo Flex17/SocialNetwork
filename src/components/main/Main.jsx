@@ -4,7 +4,7 @@ import SideBar from '../sidebar/Sidebar'
 
 
 
-import './Main.css'
+import './main.css'
 
 const Main = () => {
     return (

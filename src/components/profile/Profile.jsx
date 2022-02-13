@@ -3,7 +3,7 @@ import Info from "./info/Info";
 import Posts from "./Posts/Posts";
 import Wallpaper from './wallpaper/Wallpaper';
 
-import classes from './profile.module.css'
+import classes from './Profile.module.css'
 
 const Profile = () => {
     return (

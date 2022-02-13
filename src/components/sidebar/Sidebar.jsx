@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "./link/Link";
-import classes from './sidebar.module.css'
+import classes from './Sidebar.module.css'
 
 const SideBar = () => {
     return (

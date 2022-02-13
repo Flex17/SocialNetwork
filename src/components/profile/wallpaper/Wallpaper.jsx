@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from './wallpaper.module.css'
+import classes from './Wallpaper.module.css'
 
 const Wallpaper = () => {
     return (

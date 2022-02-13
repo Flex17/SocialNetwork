@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from './link.module.css'
+import classes from './Link.module.css'
 
 const Link = (props) => {
     return (

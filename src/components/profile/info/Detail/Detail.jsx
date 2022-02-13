@@ -1,12 +1,12 @@
 import React from "react";
 
-import classes from './detail.module.css'
+import classes from './Detail.module.css'
 
 const Detail = (props) => {
     return (
-        <div>
+        <div className={classes.detail}>
             <span className={`${classes.puncts} ${classes.puncts_k}`}>{props.k}: </span>
-            <span className={classes.value}>{props.value}</span>
+            <span className={classes.puncts}>{props.value}</span>
         </div>
     )
 }

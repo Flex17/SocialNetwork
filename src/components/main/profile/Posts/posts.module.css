@@ -1,0 +1,20 @@
+.posts {
+    margin-top: 30px;
+}
+
+.title {
+    font-size: 30px;
+    color: black;
+}
+
+.write {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}

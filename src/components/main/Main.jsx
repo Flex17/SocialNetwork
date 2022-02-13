@@ -1,7 +1,6 @@
 import React from 'react'
-import Profile from '../profile/Profile'
-import SideBar from '../sidebar/Sidebar'
-
+import Profile from './profile/Profile'
+import SideBar from './sidebar/Sidebar';
 
 
 import './main.css'

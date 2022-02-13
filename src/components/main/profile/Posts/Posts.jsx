@@ -1,5 +1,7 @@
 import React from "react";
 import Post from "./Post/Post";
+import TextInput from "./textInput/TextInput";
+import SendBtn from "./sendBtn/SendBtn";
 
 import classes from './posts.module.css'
 
@@ -8,8 +10,8 @@ const Posts = () => {
         <div className={classes.posts}>
             <div className={classes.title}>My Posts</div>
             <div className={classes.write}>
-                <input className={classes.input} placeholder="Your-news..." />
-                <button className={classes.sendBtn}>Send</button>
+                <TextInput placeholder="Your news..." />
+                <SendBtn btnText="Send" />
             </div>
             <div className={classes.block}>
                 <Post text="Hello, it's my first post" />

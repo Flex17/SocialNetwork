@@ -1,0 +1,39 @@
+.dialogs{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.dialogs_items{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 30px;
+    width: 50%;
+}
+
+.dialog{
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: black
+}
+
+.active{
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.messages{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 50%;
+}
+
+.message{
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+

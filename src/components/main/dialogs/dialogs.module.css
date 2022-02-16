@@ -18,22 +18,11 @@
     color: black
 }
 
-.active{
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
 .messages{
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: left;
     width: 50%;
-}
-
-.message{
-    margin-bottom: 10px;
-    font-size: 17px;
 }
 

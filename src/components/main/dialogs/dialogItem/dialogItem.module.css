@@ -1,0 +1,12 @@
+.dialog{
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: black
+}
+
+.active{
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: black;
+}

@@ -5,21 +5,40 @@ import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
 
 const Dialogs = () => {
+    const dialogsData = [
+        { id: 1, name: 'Vlad' },
+        { id: 2, name: 'Lera' },
+        { id: 3, name: 'Egor' },
+        { id: 4, name: 'Dima' },
+        { id: 5, name: 'Maxim' },
+        { id: 6, name: 'Sasha' },
+    ]
+
+    const messagesData = [
+        { id: 1, message: 'Hello' },
+        { id: 2, message: 'How are you?' },
+        { id: 3, message: 'I`m fine' },
+        { id: 4, message: 'I`m too' },
+    ]
+
+    const dialogsElements =
+        dialogsData.map(dialog => {
+            return <DialogItem name={dialog.name} id={dialog.id} />
+        })
+
+    const messageElements =
+        messagesData.map(message => {
+            return <Message message={message.message} id={message.id} />
+        })
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
-                <DialogItem name='Vlad' id='1' />
-                <DialogItem name='Lera' id='2' />
-                <DialogItem name='Egor' id='3' />
-                <DialogItem name='Dima' id='4' />
-                <DialogItem name='Maxim' id='5' />
-                <DialogItem name='Sasha' id='6' />
+                {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <Message message="Hello" />
-                <Message message="How are you?" />
-                <Message message="I`m fine" />
-                <Message message="I`m too" />
+                {messageElements}
             </div>
         </div>
     )

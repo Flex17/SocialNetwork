@@ -16,3 +16,8 @@
     font-size: 20px;
     color: black
 }
+
+.likesCount{
+    color: red;
+    margin-left: 10px;
+}

@@ -7,6 +7,7 @@ const Post = (props) => {
         <div className={classes.post}>
             <div className={classes.avatar}>{props.img}</div>
             <div className={classes.Text}>{props.text}</div>
+            <span className={classes.likesCount}>{props.likesCount}</span>
         </div>
     )
 }

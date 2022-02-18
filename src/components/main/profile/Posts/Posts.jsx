@@ -5,15 +5,10 @@ import SendBtn from "./sendBtn/SendBtn";
 
 import classes from './posts.module.css'
 
-const Posts = () => {
-    const postsData = [
-        { id: 1, message: 'Hello, it`s my first post', likesCount: '20' },
-        { id: 2, message: 'Hi, how are you?', likesCount: '15' }
-    ]
-
+const Posts = (props) => {
     const postElements =
-        postsData.map(post => {
-            return <Post text={post.message} likesCount={post.likesCount} id={post.id} />
+        props.state.posts.map(post => {
+            return <Post text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
     return (

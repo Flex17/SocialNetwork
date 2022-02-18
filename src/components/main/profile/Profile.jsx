@@ -5,12 +5,13 @@ import Wallpaper from './wallpaper/Wallpaper';
 
 // import classes from './profile.module.css'
 
-const Profile = () => {
+const Profile = (props) => {
+
     return (
         <div>
             <Wallpaper />
             <Info />
-            <Posts />
+            <Posts state={props.state} />
         </div>
     )
 }

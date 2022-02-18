@@ -18,6 +18,16 @@
 }
 
 .likesCount{
-    color: red;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    background-color: red;
     margin-left: 10px;
+    border-radius: 50%;
+}
+
+.likesCount span{
+    color: white;
+    margin: auto auto;
+    font-weight: 600;
 }

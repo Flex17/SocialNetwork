@@ -1,0 +1,16 @@
+.friends{
+    margin-top: 50px;
+}
+
+.title{
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content{
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+}
+

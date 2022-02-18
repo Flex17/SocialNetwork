@@ -1,16 +1,18 @@
 import React from "react";
 import Address from "./address/Address";
+import Friends from './friends/Friends'
 import classes from './sidebar.module.css';
 
-const SideBar = () => {
+const SideBar = (props) => {
+    const sideBarElements =
+        props.state.bar.map(elem => {
+            return <Address href={elem.link} value={elem.value} key={elem.id} />
+        })
     return (
         <div className={classes.sidebar}>
             <div className={classes.content}>
-                <Address href='/profile' value='Profile' />
-                <Address href='/dialogs' value='Messages' />
-                <Address href='/news' value='News' />
-                <Address href='/music' value='Music' />
-                <Address href='/settings' value='Settings' />
+                {sideBarElements}
+                <Friends state={props.state} />
             </div>
         </div >
     )

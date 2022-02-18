@@ -9,6 +9,7 @@ import { Route, Routes } from 'react-router-dom';
 
 
 import './main.css'
+import NotFoundPage from './notFoundPage/NotFoundPage';
 
 const Main = (props) => {
 
@@ -23,6 +24,7 @@ const Main = (props) => {
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />
+                        <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </div>
             </div>

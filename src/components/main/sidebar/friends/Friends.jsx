@@ -5,7 +5,7 @@ import classes from './friends.module.css'
 
 const Friends = (props) => {
     const friendsList =
-        props.state.friends.map(friend => {
+        props.state.map(friend => {
             return <Friend name={friend.name} key={friend.id} />
         })
     return (

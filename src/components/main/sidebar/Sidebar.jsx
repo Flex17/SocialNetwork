@@ -12,7 +12,7 @@ const SideBar = (props) => {
         <div className={classes.sidebar}>
             <div className={classes.content}>
                 {sideBarElements}
-                <Friends state={props.state} />
+                <Friends state={props.state.friends} />
             </div>
         </div >
     )

@@ -19,8 +19,8 @@ const Main = (props) => {
                 <SideBar state={props.state.sidebar} />
                 <div className="main-content">
                     <Routes>
-                        <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
-                        <Route path='/dialogs/*' element={<Dialogs state={props.state.messagesPage} />} />
+                        <Route path='/profile' element={<Profile state={props.state.profilePage} addPost={props.addPost} />} />
+                        <Route path='/dialogs/*' element={<Dialogs state={props.state.messagesPage} addMessage={props.addMessage} />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />

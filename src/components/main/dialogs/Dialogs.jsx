@@ -16,6 +16,14 @@ const Dialogs = (props) => {
             return <Message message={message.message} key={message.id} id={message.id} />
         })
 
+    const newMessageInput = React.createRef();
+
+    const addMessage = () => {
+        const text = newMessageInput.current.value;
+        props.addMessage(text)
+        newMessageInput.current.value = ''
+    }
+
 
     return (
         <div className={classes.dialogs}>
@@ -23,7 +31,13 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
-                {messageElements}
+                <div className={classes.content}>
+                    {messageElements}
+                </div>
+                <div className={classes.add}>
+                    <input ref={newMessageInput} type="text" className={classes.input} placeholder='Type message' />
+                    <button onClick={addMessage} className={classes.btn}>Send</button>
+                </div>
             </div>
         </div>
     )

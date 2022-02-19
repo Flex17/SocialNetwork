@@ -6,7 +6,7 @@ const NotFoundPage = () => {
     return (
         <div className={classes.notFound}>
             <div className={classes.content}>
-                <div className={classes.error}>Sory, this page is not exist...</div>
+                <div className={classes.error}>Sorry, this page is not exist...</div>
             </div>
         </div>
     )

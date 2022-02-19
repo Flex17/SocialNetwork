@@ -1,3 +1,7 @@
+.notFound{
+    height: 90vh;
+}
+
 .error{
     margin-top: 100px;
     text-align: center;

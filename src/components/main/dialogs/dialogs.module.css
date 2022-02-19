@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: start;
+    height: 90vh;
 }
 
 .dialogs_items{
@@ -22,7 +23,30 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: space-between;
     width: 50%;
+    height: 100%;
+}
+
+.input{
+    width: 300px;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    border: 1px solid black;
+    background-color: #fff;
+    font-size: 15px;
+    padding: 10px;
+    max-width: 100px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
 

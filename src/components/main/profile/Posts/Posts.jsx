@@ -1,7 +1,5 @@
 import React from "react";
 import Post from "./Post/Post";
-import TextInput from "./textInput/TextInput";
-import SendBtn from "./sendBtn/SendBtn";
 
 import classes from './posts.module.css'
 
@@ -11,12 +9,20 @@ const Posts = (props) => {
             return <Post text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
+    const newPostInput = React.createRef();
+
+    const addPost = () => {
+        const text = newPostInput.current.value;
+        props.addPost(text);
+        newPostInput.current.value = ''
+    }
+
     return (
         <div className={classes.posts}>
             <div className={classes.title}>My Posts</div>
             <div className={classes.write}>
-                <TextInput placeholder="Your news..." />
-                <SendBtn btnText="Send" />
+                <input ref={newPostInput} className={classes.input} placeholder='Your news...' />
+                <button onClick={addPost} className={classes.btn}>Add post</button>
             </div>
             <div className={classes.block}>
                 {postElements}

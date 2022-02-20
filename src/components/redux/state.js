@@ -5,7 +5,8 @@ const state = {
         posts: [
             { id: 1, message: 'Hello, it`s my first post', likesCount: '20' },
             { id: 2, message: 'Hi, how are you?', likesCount: '15' }
-        ]
+        ],
+        newPostText: ''
     },
     messagesPage: {
         messages: [
@@ -22,6 +23,7 @@ const state = {
             { id: 5, name: 'Maxim' },
             { id: 6, name: 'Sasha' },
         ],
+        newMessageText: ''
     },
     sidebar: {
         bar: [
@@ -39,25 +41,48 @@ const state = {
     }
 }
 
-export const addPost = (postText) => {
-    const newPost = {
-        id: 3,
-        message: postText,
-        likesCount: 5
+export const addPost = () => {
+    const text = state.profilePage.newPostText;
+    const postsArray = state.profilePage.posts;
+    if (text !== '') {
+        const newPost = {
+            id: postsArray[postsArray.length - 1].id + 1,
+            message: text,
+            likesCount: 5
+        }
+        state.profilePage.posts.push(newPost);
+        rerenderEntireTree(state);
+        updateNewPostText('')
     }
+}
 
-    state.profilePage.posts.push(newPost);
+export const updateNewPostText = (newText) => {
+    const text = newText;
+
+    state.profilePage.newPostText = text;
     rerenderEntireTree(state)
 }
 
-export const addMessage = (messageText) => {
-    const newMessage = {
-        id: 5,
-        message: messageText
-    }
+export const addMessage = () => {
+    const text = state.messagesPage.newMessageText;
+    const messagesArray = state.messagesPage.messages;
+    if (text !== '') {
+        const newMessage = {
+            id: messagesArray[messagesArray.length - 1].id + 1,
+            message: text
+        }
 
-    state.messagesPage.messages.push(newMessage)
-    rerenderEntireTree(state)
+        state.messagesPage.messages.push(newMessage)
+        rerenderEntireTree(state);
+        updateNewMessageText('')
+    }
+}
+
+export const updateNewMessageText = (newText) => {
+    const text = newText;
+
+    state.messagesPage.newMessageText = text;
+    rerenderEntireTree(state);
 }
 
 export default state

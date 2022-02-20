@@ -19,9 +19,12 @@ const Dialogs = (props) => {
     const newMessageInput = React.createRef();
 
     const addMessage = () => {
+        props.addMessage()
+    }
+
+    const onMessageChange = () => {
         const text = newMessageInput.current.value;
-        props.addMessage(text)
-        newMessageInput.current.value = ''
+        props.updateNewMessageText(text);
     }
 
 
@@ -35,8 +38,15 @@ const Dialogs = (props) => {
                     {messageElements}
                 </div>
                 <div className={classes.add}>
-                    <input ref={newMessageInput} type="text" className={classes.input} placeholder='Type message' />
-                    <button onClick={addMessage} className={classes.btn}>Send</button>
+                    <input
+                        onChange={onMessageChange}
+                        value={props.state.newMessageText}
+                        ref={newMessageInput}
+                        className={classes.input}
+                        placeholder='Type message' />
+                    <button
+                        onClick={addMessage}
+                        className={classes.btn}>Send</button>
                 </div>
             </div>
         </div>

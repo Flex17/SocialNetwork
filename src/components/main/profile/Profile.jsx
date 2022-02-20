@@ -11,7 +11,10 @@ const Profile = (props) => {
         <div className={classes.profile}>
             <Wallpaper />
             <Info />
-            <Posts state={props.state} addPost={props.addPost} />
+            <Posts
+                state={props.state}
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText} />
         </div>
     )
 }

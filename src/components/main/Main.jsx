@@ -16,17 +16,18 @@ const Main = (props) => {
     return (
         <div className="main">
             <div className="main-wrapper">
-                <SideBar state={props.state.sidebar} />
+                <SideBar state={props.store.getState().getSidebar()} />
                 <div className="main-content">
                     <Routes>
                         <Route path='/profile' element={<Profile
-                            state={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText} />} />
+                            store={props.store}
+                        />} />
                         <Route path='/dialogs/*' element={<Dialogs
-                            state={props.state.messagesPage}
-                            addMessage={props.addMessage}
-                            updateNewMessageText={props.updateNewMessageText} />} />
+                            state={props.store.getState()}
+                            store={props.store}
+                            addMessage={props.store.addMessage.bind(props.store)}
+                            updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
+                        />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />

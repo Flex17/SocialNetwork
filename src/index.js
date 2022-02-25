@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import state from './components/redux/state'
+// import state from './components/redux/state'
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/app/App";
-import { addMessage, addPost, updateNewPostText, updateNewMessageText, subscribe } from "./components/redux/state";
+// import { addMessage, addPost, updateNewPostText, updateNewMessageText, subscribe } from "./components/redux/state";
+import store from "./components/redux/state";
 
 import './index.css';
 
@@ -12,14 +13,15 @@ const rerenderEntireTree = (state) => {
         <BrowserRouter>
             <App
                 state={state}
-                addPost={addPost}
-                addMessage={addMessage}
-                updateNewPostText={updateNewPostText}
-                updateNewMessageText={updateNewMessageText} />
+                // addPost={store.addPost}
+                // addMessage={store.addMessage}
+                // updateNewPostText={store.updateNewPostText}
+                // updateNewMessageText={store.updateNewMessageText} 
+                store={store} />
         </BrowserRouter>,
         document.getElementById('root'));
 }
 
-rerenderEntireTree(state)
+rerenderEntireTree(store.getState())
 
-subscribe(rerenderEntireTree)
+store.subscribe(rerenderEntireTree)

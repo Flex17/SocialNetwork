@@ -12,9 +12,11 @@ const Profile = (props) => {
             <Wallpaper />
             <Info />
             <Posts
-                state={props.state}
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText} />
+                state={props.store.getState()}
+                store={props.store}
+                addPost={props.store.addPost.bind(props.store)}
+                updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+            />
         </div>
     )
 }

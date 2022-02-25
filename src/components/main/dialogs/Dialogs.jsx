@@ -7,12 +7,12 @@ import Message from "./message/Message";
 const Dialogs = (props) => {
 
     const dialogsElements =
-        props.state.dialogs.map(dialog => {
+        props.state.messagesPage.dialogs.map(dialog => {
             return <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
         })
 
     const messageElements =
-        props.state.messages.map(message => {
+        props.state.messagesPage.messages.map(message => {
             return <Message message={message.message} key={message.id} id={message.id} />
         })
 
@@ -27,7 +27,6 @@ const Dialogs = (props) => {
         props.updateNewMessageText(text);
     }
 
-
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
@@ -40,7 +39,7 @@ const Dialogs = (props) => {
                 <div className={classes.add}>
                     <input
                         onChange={onMessageChange}
-                        value={props.state.newMessageText}
+                        value={props.state.messagesPage.newMessageText}
                         ref={newMessageInput}
                         className={classes.input}
                         placeholder='Type message' />

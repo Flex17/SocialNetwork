@@ -4,8 +4,9 @@ import Post from "./Post/Post";
 import classes from './posts.module.css'
 
 const Posts = (props) => {
+
     const postElements =
-        props.state.posts.map(post => {
+        props.state.profilePage.posts.map(post => {
             return <Post text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
@@ -26,7 +27,7 @@ const Posts = (props) => {
             <div className={classes.write}>
                 <input
                     onChange={onPostChange}
-                    value={props.state.newPostText}
+                    value={props.state.profilePage.newPostText}
                     ref={newPostInput}
                     className={classes.input}
                     placeholder='Your news...' />

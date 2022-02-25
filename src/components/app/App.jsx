@@ -11,11 +11,7 @@ const App = (props) => {
             <div className='container'>
                 <AppHeader />
                 <Main
-                    state={props.state}
-                    addPost={props.addPost}
-                    addMessage={props.addMessage}
-                    updateNewPostText={props.updateNewPostText}
-                    updateNewMessageText={props.updateNewMessageText} />
+                    store={props.store} />
             </div>
         </div>
     )

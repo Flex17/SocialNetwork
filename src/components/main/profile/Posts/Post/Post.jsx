@@ -5,8 +5,7 @@ import classes from './post.module.css'
 const Post = (props) => {
     const deletePost = () => {
         const id = props.id
-        props.store.deletePost(id)
-        console.log(id)
+        props.dispatch({ type: 'DELETE-POST', id: id })
     }
 
     return (

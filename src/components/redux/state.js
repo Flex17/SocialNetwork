@@ -38,90 +38,92 @@ const store = {
                 { id: 3, name: 'Alex' }
             ]
         },
-        getSidebar() {
-            return this._sidebar;
-        }
     },
 
-    getState() {
-        return this._state;
-    },
+    _callObserver() { },
 
-    addPost() {
-        const state = this.getState();
-        const text = state.profilePage.newPostText;
-        const postsArray = state.profilePage.posts;
-        let id = 0;
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const state = this.dispatch({ type: 'GET-STATE' });
+            const text = state.profilePage.newPostText;
+            const postsArray = state.profilePage.posts;
+            let id = 0;
 
-        if (postsArray.length !== 0) {
-            id = postsArray[postsArray.length - 1].id + 1
-        }
-
-        if (text !== '') {
-            const newPost = {
-                id: id,
-                message: text,
-                likesCount: 5
+            if (postsArray.length !== 0) {
+                id = postsArray[postsArray.length - 1].id + 1
             }
-            state.profilePage.posts.push(newPost);
+
+            if (text !== '') {
+                const newPost = {
+                    id: id,
+                    message: text,
+                    likesCount: 5
+                }
+                state.profilePage.posts.push(newPost);
+                this._callObserver(state);
+                store.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: '' })
+            }
+        }
+
+        else if (action.type === 'ADD-MESSAGE') {
+            const state = this.dispatch({ type: 'GET-STATE' });
+            const text = state.messagesPage.newMessageText;
+            const messagesArray = state.messagesPage.messages;
+
+            if (text !== '') {
+                const newMessage = {
+                    id: messagesArray[messagesArray.length - 1].id + 1,
+                    message: text
+                }
+
+                state.messagesPage.messages.push(newMessage)
+                this._callObserver(state);
+                this.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: '' })
+            }
+        }
+
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            const state = this.dispatch({ type: 'GET-STATE' });
+            const text = action.newText;
+
+            state.profilePage.newPostText = text;
+            this._callObserver(state)
+        }
+
+        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            const state = this.dispatch({ type: 'GET-STATE' });
+            const text = action.newText;
+
+            state.messagesPage.newMessageText = text;
             this._callObserver(state);
-            store.updateNewPostText('')
         }
-    },
 
-    updateNewPostText(newText) {
-        const state = this.getState();
-        const text = newText;
-
-        state.profilePage.newPostText = text;
-        this._callObserver(state)
-    },
-
-    addMessage() {
-        const state = this.getState();
-        const text = state.messagesPage.newMessageText;
-        const messagesArray = state.messagesPage.messages;
-
-        if (text !== '') {
-            const newMessage = {
-                id: messagesArray[messagesArray.length - 1].id + 1,
-                message: text
-            }
-
-            state.messagesPage.messages.push(newMessage)
-            this._callObserver(state);
-            this.updateNewMessageText('')
+        else if (action.type === 'DELETE-POST') {
+            store._state.profilePage.posts.forEach(element => {
+                if (element.id === action.id) {
+                    store._state.profilePage.posts.splice(element.id - 1, 1)
+                    store._callObserver(store._state)
+                    let k = 1
+                    store._state.profilePage.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
+                        elem.id = k
+                        k++
+                    })
+                }
+            });
         }
-    },
 
-    updateNewMessageText(newText) {
-        const state = this.getState();
-        const text = newText;
+        else if (action.type === 'GET-SIDEBAR') {
+            return this._state._sidebar;
+        }
 
-        state.messagesPage.newMessageText = text;
-        this._callObserver(state);
-    },
+        else if (action.type === 'GET-STATE') {
+            return this._state;
+        }
 
-    subscribe(observer) {
-        this._callObserver = observer;
-    },
-
-    deletePost(id) {
-        store._state.profilePage.posts.forEach(element => {
-            if (element.id === id) {
-                store._state.profilePage.posts.splice(element.id - 1, 1)
-                store._callObserver(store._state)
-                let k = 1
-                store._state.profilePage.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
-                    elem.id = k
-                    k++
-                })
-            }
-        });
-        console.log(store._state.profilePage.posts)
-    },
-
-    _callObserver() { }
+        else if (action.type === 'SUBSCRIBE') {
+            this._callObserver = action.observer;
+        }
+    }
 }
 
 

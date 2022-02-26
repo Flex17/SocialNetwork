@@ -12,10 +12,11 @@ const Profile = (props) => {
             <Wallpaper />
             <Info />
             <Posts
-                state={props.store.getState()}
+                state={props.store.dispatch({ type: 'GET-STATE' })}
                 store={props.store}
-                addPost={props.store.addPost.bind(props.store)}
-                updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                dispatch={props.store.dispatch.bind(props.store)}
+            // addPost={props.store.addPost.bind(props.store)}
+            // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
             />
         </div>
     )

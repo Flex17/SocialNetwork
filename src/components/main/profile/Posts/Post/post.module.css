@@ -1,4 +1,10 @@
-.post {
+.post{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post_content {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -30,4 +36,11 @@
     color: white;
     margin: auto auto;
     font-weight: 600;
+}
+
+.delete{
+    width: 20px;
+    height: 20px;
+    background-color: grey;
+    cursor: pointer;
 }

@@ -51,10 +51,15 @@ const store = {
         const state = this.getState();
         const text = state.profilePage.newPostText;
         const postsArray = state.profilePage.posts;
+        let id = 0;
+
+        if (postsArray.length !== 0) {
+            id = postsArray[postsArray.length - 1].id + 1
+        }
 
         if (text !== '') {
             const newPost = {
-                id: postsArray[postsArray.length - 1].id + 1,
+                id: id,
                 message: text,
                 likesCount: 5
             }
@@ -99,6 +104,21 @@ const store = {
 
     subscribe(observer) {
         this._callObserver = observer;
+    },
+
+    deletePost(id) {
+        store._state.profilePage.posts.forEach(element => {
+            if (element.id === id) {
+                store._state.profilePage.posts.splice(element.id - 1, 1)
+                store._callObserver(store._state)
+                let k = 1
+                store._state.profilePage.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
+                    elem.id = k
+                    k++
+                })
+            }
+        });
+        console.log(store._state.profilePage.posts)
     },
 
     _callObserver() { }

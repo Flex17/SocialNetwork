@@ -10,20 +10,21 @@ import { Route, Routes } from 'react-router-dom';
 
 import './main.css'
 import NotFoundPage from './notFoundPage/NotFoundPage';
+import { getSidebarActionCreator, getStateActionCreator } from '../redux/state';
 
 const Main = (props) => {
 
     return (
         <div className="main">
             <div className="main-wrapper">
-                <SideBar state={props.store.dispatch({ type: 'GET-SIDEBAR' })} />
+                <SideBar state={props.store.dispatch(getSidebarActionCreator())} />
                 <div className="main-content">
                     <Routes>
                         <Route path='/profile' element={<Profile
                             store={props.store}
                         />} />
                         <Route path='/dialogs/*' element={<Dialogs
-                            state={props.store.dispatch({ type: 'GET-STATE' })}
+                            state={props.store.dispatch(getStateActionCreator())}
                             store={props.store}
                             dispatch={props.store.dispatch.bind(props.store)}
                         />} />

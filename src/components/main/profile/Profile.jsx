@@ -4,6 +4,7 @@ import Posts from "./Posts/Posts";
 import Wallpaper from './wallpaper/Wallpaper';
 
 import classes from './profile.module.css'
+import { getStateActionCreator } from "../../redux/state";
 
 const Profile = (props) => {
 
@@ -12,7 +13,7 @@ const Profile = (props) => {
             <Wallpaper />
             <Info />
             <Posts
-                state={props.store.dispatch({ type: 'GET-STATE' })}
+                state={props.store.dispatch(getStateActionCreator())}
                 store={props.store}
                 dispatch={props.store.dispatch.bind(props.store)}
             // addPost={props.store.addPost.bind(props.store)}

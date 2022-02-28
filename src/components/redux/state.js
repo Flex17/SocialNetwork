@@ -1,3 +1,57 @@
+const ADD_POST = 'ADD-POST'
+const GET_STATE = 'GET-STATE'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const DELETE_POST = 'DELETE-POST'
+const GET_SIDEBAR = 'GET-SIDEBAR'
+const SUBSCRIBE = 'SUBSCRIBE'
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const getStateActionCreator = () => {
+    return {
+        type: GET_STATE
+    }
+}
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+export const updateNewMessageTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: text
+    }
+}
+export const deletePosttActionCreator = (id) => {
+    return {
+        type: DELETE_POST,
+        id: id
+    }
+}
+export const getSidebarActionCreator = () => {
+    return {
+        type: GET_SIDEBAR
+    }
+}
+export const subscribeActionCreator = (observer) => {
+    return {
+        type: SUBSCRIBE,
+        observer: observer
+    }
+}
+
 const store = {
     _state: {
         profilePage: {
@@ -43,8 +97,8 @@ const store = {
     _callObserver() { },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const state = this.dispatch({ type: 'GET-STATE' });
+        if (action.type === ADD_POST) {
+            const state = this.dispatch({ type: GET_STATE });
             const text = state.profilePage.newPostText;
             const postsArray = state.profilePage.posts;
             let id = 0;
@@ -61,12 +115,12 @@ const store = {
                 }
                 state.profilePage.posts.push(newPost);
                 this._callObserver(state);
-                store.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: '' })
+                store.dispatch({ type: UPDATE_NEW_POST_TEXT, newText: '' })
             }
         }
 
-        else if (action.type === 'ADD-MESSAGE') {
-            const state = this.dispatch({ type: 'GET-STATE' });
+        else if (action.type === ADD_MESSAGE) {
+            const state = this.dispatch({ type: GET_STATE });
             const text = state.messagesPage.newMessageText;
             const messagesArray = state.messagesPage.messages;
 
@@ -78,27 +132,27 @@ const store = {
 
                 state.messagesPage.messages.push(newMessage)
                 this._callObserver(state);
-                this.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: '' })
+                this.dispatch({ type: UPDATE_NEW_MESSAGE_TEXT, newText: '' })
             }
         }
 
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            const state = this.dispatch({ type: 'GET-STATE' });
+        else if (action.type === UPDATE_NEW_POST_TEXT) {
+            const state = this.dispatch({ type: GET_STATE });
             const text = action.newText;
 
             state.profilePage.newPostText = text;
             this._callObserver(state)
         }
 
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            const state = this.dispatch({ type: 'GET-STATE' });
+        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            const state = this.dispatch({ type: GET_STATE });
             const text = action.newText;
 
             state.messagesPage.newMessageText = text;
             this._callObserver(state);
         }
 
-        else if (action.type === 'DELETE-POST') {
+        else if (action.type === DELETE_POST) {
             store._state.profilePage.posts.forEach(element => {
                 if (element.id === action.id) {
                     store._state.profilePage.posts.splice(element.id - 1, 1)
@@ -112,15 +166,15 @@ const store = {
             });
         }
 
-        else if (action.type === 'GET-SIDEBAR') {
+        else if (action.type === GET_SIDEBAR) {
             return this._state._sidebar;
         }
 
-        else if (action.type === 'GET-STATE') {
+        else if (action.type === GET_STATE) {
             return this._state;
         }
 
-        else if (action.type === 'SUBSCRIBE') {
+        else if (action.type === SUBSCRIBE) {
             this._callObserver = action.observer;
         }
     }

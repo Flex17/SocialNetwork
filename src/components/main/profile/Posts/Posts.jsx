@@ -1,25 +1,24 @@
 import React from "react";
-import { addPostActionCreator } from "../../../redux/state";
+import { addPostActionCreator, getStateActionCreator } from "../../../redux/state";
 import Post from "./Post/Post";
 
 import classes from './posts.module.css'
 import { updateNewPostTextActionCreator } from './../../../redux/state';
 
 const Posts = (props) => {
+    const state = props.dispatch(getStateActionCreator()).profilePage
 
     const postElements =
-        props.state.profilePage.posts.map(post => {
+        state.posts.map(post => {
             return <Post dispatch={props.dispatch} text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
-
-    const newPostInput = React.createRef();
 
     const addPost = () => {
         props.dispatch(addPostActionCreator());
     }
 
-    const onPostChange = () => {
-        const text = newPostInput.current.value;
+    const onPostChange = (e) => {
+        const text = e.target.value;
         props.dispatch(updateNewPostTextActionCreator(text))
     }
 
@@ -29,8 +28,7 @@ const Posts = (props) => {
             <div className={classes.write}>
                 <input
                     onChange={onPostChange}
-                    value={props.state.profilePage.newPostText}
-                    ref={newPostInput}
+                    value={state.newPostText}
                     className={classes.input}
                     placeholder='Your news...' />
                 <button

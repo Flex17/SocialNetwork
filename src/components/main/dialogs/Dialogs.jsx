@@ -3,28 +3,27 @@ import React from "react";
 import classes from './dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/state";
+import { addMessageActionCreator, updateNewMessageTextActionCreator, getStateActionCreator } from "../../redux/state";
 
 const Dialogs = (props) => {
+    const state = props.store.dispatch(getStateActionCreator()).messagesPage
 
     const dialogsElements =
-        props.state.messagesPage.dialogs.map(dialog => {
+        state.dialogs.map(dialog => {
             return <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
         })
 
     const messageElements =
-        props.state.messagesPage.messages.map(message => {
+        state.messages.map(message => {
             return <Message message={message.message} key={message.id} id={message.id} />
         })
-
-    const newMessageInput = React.createRef();
 
     const addMessage = () => {
         props.dispatch(addMessageActionCreator())
     }
 
-    const onMessageChange = () => {
-        const text = newMessageInput.current.value;
+    const onMessageChange = (e) => {
+        const text = e.target.value;
         props.dispatch(updateNewMessageTextActionCreator(text))
     }
 
@@ -40,8 +39,7 @@ const Dialogs = (props) => {
                 <div className={classes.add}>
                     <input
                         onChange={onMessageChange}
-                        value={props.state.messagesPage.newMessageText}
-                        ref={newMessageInput}
+                        value={state.newMessageText}
                         className={classes.input}
                         placeholder='Type message' />
                     <button

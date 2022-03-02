@@ -1,4 +1,12 @@
-.message{
-    margin-bottom: 10px;
+.text{
     font-size: 17px;
+    word-break:break-all;
+}
+
+.message{
+    padding: 13px;
+    background-color: rgb(197, 197, 197);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    max-width: 300px;
 }

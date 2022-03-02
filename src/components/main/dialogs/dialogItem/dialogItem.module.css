@@ -1,12 +1,26 @@
 .dialog{
     margin-bottom: 10px;
+    display: flex;
+}
+
+.dialog_name{
+    margin-bottom: 10px;
     font-size: 20px;
-    color: black
+    color: black;
+    margin-left: 20px;
 }
 
 .active{
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 20px;
-    color: black;
+    color: black;;
+    margin-left: 20px;
+}
+
+.avatar{
+    width: 30px;
+    height: 30px;
+    background-color: #FFFF00;
+    border-radius: 50%;
 }

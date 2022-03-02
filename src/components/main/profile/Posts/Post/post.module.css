@@ -22,6 +22,8 @@
     font-size: 17px;
     color: black;
     font-weight: 500;
+    max-width: 80%;
+    word-break:break-all;
 }
 
 .likesCount{
@@ -32,6 +34,7 @@
     margin-left: 10px;
     border-radius: 50%;
     cursor: pointer;
+    user-select: none;
 }
 
 .likesCount span{

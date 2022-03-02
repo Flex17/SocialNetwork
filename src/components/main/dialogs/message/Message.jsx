@@ -4,7 +4,9 @@ import classes from './message.module.css'
 
 const Message = (props) => {
     return (
-        <div className={classes.message}>{props.message}</div>
+        <div className={classes.message}>
+            <div className={classes.text}>{props.message}</div>
+        </div>
     )
 }
 

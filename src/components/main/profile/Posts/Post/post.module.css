@@ -19,8 +19,9 @@
 }
 
 .text {
-    font-size: 20px;
-    color: black
+    font-size: 17px;
+    color: black;
+    font-weight: 500;
 }
 
 .likesCount{
@@ -30,6 +31,7 @@
     background-color: red;
     margin-left: 10px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .likesCount span{

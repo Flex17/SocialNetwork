@@ -6,6 +6,7 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const DELETE_POST = 'DELETE-POST'
 const GET_SIDEBAR = 'GET-SIDEBAR'
 const SUBSCRIBE = 'SUBSCRIBE'
+const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
 
 export const addPostActionCreator = () => {
     return {
@@ -51,13 +52,19 @@ export const subscribeActionCreator = (observer) => {
         observer: observer
     }
 }
+export const changeLikesCountActionCreator = (id) => {
+    return {
+        type: CHANGE_LIKES_COUNT,
+        id: id
+    }
+}
 
 const store = {
     _state: {
         profilePage: {
             posts: [
-                { id: 1, message: 'Hello, it`s my first post', likesCount: '20' },
-                { id: 2, message: 'Hi, how are you?', likesCount: '15' }
+                { id: 1, message: 'Hello, it`s my first post', likesCount: 0 },
+                { id: 2, message: 'Hi, how are you?', likesCount: 0 }
             ],
             newPostText: ''
         },
@@ -111,7 +118,7 @@ const store = {
                 const newPost = {
                     id: id,
                     message: text,
-                    likesCount: 5
+                    likesCount: 0
                 }
                 state.profilePage.posts.push(newPost);
                 this._callObserver(state);
@@ -164,6 +171,17 @@ const store = {
                     })
                 }
             });
+        }
+
+        else if (action.type === CHANGE_LIKES_COUNT) {
+            const posts = store.dispatch({ type: GET_STATE }).profilePage.posts
+
+            posts.forEach(post => {
+                if (post.id === action.id) {
+                    post.likesCount += 1
+                }
+            });
+            this._callObserver()
         }
 
         else if (action.type === GET_SIDEBAR) {

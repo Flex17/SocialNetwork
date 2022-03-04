@@ -6,7 +6,7 @@ import Wallpaper from './wallpaper/Wallpaper';
 import classes from './profile.module.css'
 
 const Profile = (props) => {
-
+    // debugger
     return (
         <div className={classes.profile}>
             <Wallpaper />

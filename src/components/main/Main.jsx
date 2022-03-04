@@ -6,18 +6,15 @@ import Music from './music/Music';
 import News from './news/News';
 import Settings from './settings/Settings';
 import { Route, Routes } from 'react-router-dom';
-
+import NotFoundPage from './notFoundPage/NotFoundPage';
 
 import './main.css'
-import NotFoundPage from './notFoundPage/NotFoundPage';
-import { getSidebarActionCreator } from '../redux/state';
 
 const Main = (props) => {
-
     return (
         <div className="main">
             <div className="main-wrapper">
-                <SideBar state={props.store.dispatch(getSidebarActionCreator())} />
+                <SideBar store={props.store} />
                 <div className="main-content">
                     <Routes>
                         <Route path='/profile' element={<Profile

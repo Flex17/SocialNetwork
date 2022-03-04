@@ -1,8 +1,7 @@
 import React from "react";
-import { deletePosttActionCreator } from "../../../../redux/state";
 
 import classes from './post.module.css'
-import { changeLikesCountActionCreator } from './../../../../redux/state';
+import { changeLikesCountActionCreator, deletePostActionCreator } from './../../../../redux/profile-reducer';
 
 const Post = (props) => {
     const changeLikesCount = () => {
@@ -12,7 +11,7 @@ const Post = (props) => {
 
     const deletePost = () => {
         const id = props.id
-        props.dispatch(deletePosttActionCreator(id))
+        props.dispatch(deletePostActionCreator(id))
     }
 
     return (

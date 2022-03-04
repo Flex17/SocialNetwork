@@ -1,13 +1,11 @@
 import React from "react";
-import { addPostActionCreator, getStateActionCreator } from "../../../redux/state";
 import Post from "./Post/Post";
 
 import classes from './posts.module.css'
-import { updateNewPostTextActionCreator } from './../../../redux/state';
+import { updateNewPostTextActionCreator, addPostActionCreator } from './../../../redux/profile-reducer';
 
 const Posts = (props) => {
-    const state = props.dispatch(getStateActionCreator()).profilePage
-
+    const state = props.store.getState().profilePage
     const postElements =
         state.posts.map(post => {
             return <Post dispatch={props.dispatch} text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />

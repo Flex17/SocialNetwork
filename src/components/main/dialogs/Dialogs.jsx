@@ -3,10 +3,10 @@ import React from "react";
 import classes from './dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
-import { addMessageActionCreator, updateNewMessageTextActionCreator, getStateActionCreator } from "../../redux/state";
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/message-reducer";
 
 const Dialogs = (props) => {
-    const state = props.store.dispatch(getStateActionCreator()).messagesPage
+    const state = props.store.getState().messagesPage
 
     const dialogsElements =
         state.dialogs.map(dialog => {

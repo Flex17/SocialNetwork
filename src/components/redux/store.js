@@ -1,5 +1,5 @@
 import profileReducer from "./profile-reducer"
-import messageReducer from './message-reducer';
+import messageReducer from './messages-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 const store = {

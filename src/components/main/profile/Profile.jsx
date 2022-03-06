@@ -1,19 +1,17 @@
 import React from "react";
 import Info from "./info/Info";
-import Posts from "./Posts/Posts";
+import PostsContainer from "./Posts/PostsContainer";
 import Wallpaper from './wallpaper/Wallpaper';
 
 import classes from './profile.module.css'
 
 const Profile = (props) => {
-    // debugger
     return (
         <div className={classes.profile}>
             <Wallpaper />
             <Info />
-            <Posts
+            <PostsContainer
                 store={props.store}
-                dispatch={props.store.dispatch.bind(props.store)}
             />
         </div>
     )

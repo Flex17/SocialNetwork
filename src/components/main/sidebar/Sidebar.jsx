@@ -4,16 +4,15 @@ import Friends from './friends/Friends'
 import classes from './sidebar.module.css';
 
 const SideBar = (props) => {
-    const state = props.store.getState().sidebar
     const sideBarElements =
-        state.bar.map(elem => {
+        props.onGetBar().map(elem => {
             return <Address href={elem.link} value={elem.value} key={elem.id} />
         })
     return (
         <div className={classes.sidebar}>
             <div className={classes.content}>
                 {sideBarElements}
-                <Friends state={state.friends} />
+                <Friends friends={props.onGetFriends()} />
             </div>
         </div >
     )

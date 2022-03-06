@@ -1,23 +1,21 @@
 import React from "react";
-import Post from "./Post/Post";
+import PostContainer from "./Post/PostContainer";
 
 import classes from './posts.module.css'
-import { updateNewPostTextActionCreator, addPostActionCreator } from './../../../redux/profile-reducer';
 
 const Posts = (props) => {
-    const state = props.store.getState().profilePage
     const postElements =
-        state.posts.map(post => {
-            return <Post dispatch={props.dispatch} text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
+        props.onGetPosts().map(post => {
+            return <PostContainer store={props.store} text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
     const addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.onAddPost()
     }
 
     const onPostChange = (e) => {
         const text = e.target.value;
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.onPostChange(text)
     }
 
     return (
@@ -26,7 +24,7 @@ const Posts = (props) => {
             <div className={classes.write}>
                 <input
                     onChange={onPostChange}
-                    value={state.newPostText}
+                    value={props.onGetNewPostText()}
                     className={classes.input}
                     placeholder='Your news...' />
                 <button

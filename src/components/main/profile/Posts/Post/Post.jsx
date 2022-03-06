@@ -1,17 +1,16 @@
 import React from "react";
 
 import classes from './post.module.css'
-import { changeLikesCountActionCreator, deletePostActionCreator } from './../../../../redux/profile-reducer';
 
 const Post = (props) => {
     const changeLikesCount = () => {
         const id = props.id
-        props.dispatch(changeLikesCountActionCreator(id))
+        props.onChangeLikesCount(id)
     }
 
     const deletePost = () => {
         const id = props.id
-        props.dispatch(deletePostActionCreator(id))
+        props.onDeletePost(id)
     }
 
     return (

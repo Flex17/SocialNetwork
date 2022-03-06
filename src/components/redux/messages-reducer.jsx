@@ -32,7 +32,6 @@ const messageReducer = (state = initialState, action) => {
                 }
 
                 state.messages.push(newMessage)
-                messageReducer(state, { type: UPDATE_NEW_MESSAGE_TEXT, newText: '' })
             }
             return state
 

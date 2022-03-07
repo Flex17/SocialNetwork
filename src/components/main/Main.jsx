@@ -10,19 +10,15 @@ import NotFoundPage from './notFoundPage/NotFoundPage';
 
 import './main.css'
 
-const Main = (props) => {
+const Main = () => {
     return (
         <div className="main">
             <div className="main-wrapper">
-                <SideBarContainer store={props.store} />
+                <SideBarContainer />
                 <div className="main-content">
                     <Routes>
-                        <Route path='/profile' element={<Profile
-                            store={props.store}
-                        />} />
-                        <Route path='/dialogs/*' element={<DialogsContainer
-                            store={props.store}
-                        />} />
+                        <Route path='/profile' element={<Profile />} />
+                        <Route path='/dialogs/*' element={<DialogsContainer />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />

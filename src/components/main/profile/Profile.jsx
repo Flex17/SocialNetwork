@@ -10,9 +10,7 @@ const Profile = (props) => {
         <div className={classes.profile}>
             <Wallpaper />
             <Info />
-            <PostsContainer
-                store={props.store}
-            />
+            <PostsContainer />
         </div>
     )
 }

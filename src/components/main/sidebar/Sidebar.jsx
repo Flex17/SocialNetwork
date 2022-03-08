@@ -5,14 +5,14 @@ import classes from './sidebar.module.css';
 
 const SideBar = (props) => {
     const sideBarElements =
-        props.onGetBar().map(elem => {
+        props.bar.map(elem => {
             return <Address href={elem.link} value={elem.value} key={elem.id} />
         })
     return (
         <div className={classes.sidebar}>
             <div className={classes.content}>
                 {sideBarElements}
-                <Friends friends={props.onGetFriends()} />
+                <Friends friends={props.friends} />
             </div>
         </div >
     )

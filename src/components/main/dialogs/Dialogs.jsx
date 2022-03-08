@@ -6,12 +6,12 @@ import Message from "./message/Message";
 
 const Dialogs = (props) => {
     const dialogsElements =
-        props.onGetDialogs().map(dialog => {
+        props.dialogs.map(dialog => {
             return <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
         })
 
     const messageElements =
-        props.onGetMessages().map(message => {
+        props.messages.map(message => {
             return <Message message={message.message} key={message.id} id={message.id} />
         })
 
@@ -36,7 +36,7 @@ const Dialogs = (props) => {
                 <div className={classes.add}>
                     <input
                         onChange={onMessageChange}
-                        value={props.onGetNewMessageText()}
+                        value={props.newPostText}
                         className={classes.input}
                         placeholder='Type message' />
                     <button

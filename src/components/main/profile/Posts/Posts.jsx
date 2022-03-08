@@ -5,8 +5,8 @@ import classes from './posts.module.css'
 
 const Posts = (props) => {
     const postElements =
-        props.onGetPosts().map(post => {
-            return <PostContainer store={props.store} text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
+        props.posts.map(post => {
+            return <PostContainer text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
     const addPost = () => {
@@ -24,7 +24,7 @@ const Posts = (props) => {
             <div className={classes.write}>
                 <input
                     onChange={onPostChange}
-                    value={props.onGetNewPostText()}
+                    value={props.newPostText}
                     className={classes.input}
                     placeholder='Your news...' />
                 <button

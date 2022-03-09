@@ -9,7 +9,7 @@ const Posts = (props) => {
             return <PostContainer text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
         })
 
-    const addPost = () => {
+    const onAddPost = () => {
         props.onAddPost()
     }
 
@@ -28,7 +28,7 @@ const Posts = (props) => {
                     className={classes.input}
                     placeholder='Your news...' />
                 <button
-                    onClick={addPost}
+                    onClick={onAddPost}
                     className={classes.btn}>Add post</button>
             </div>
             <div className={classes.block}>

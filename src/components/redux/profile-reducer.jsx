@@ -13,9 +13,11 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            const text = state.newPostText;
-            const postsArray = state.posts;
+        case ADD_POST: {
+            const stateCopy = { ...state }
+            const text = stateCopy.newPostText;
+            stateCopy.posts = [...state.posts]
+            const postsArray = stateCopy.posts;
             let id = 0;
 
             if (postsArray.length !== 0) {
@@ -28,41 +30,51 @@ const profileReducer = (state = initialState, action) => {
                     message: text,
                     likesCount: 0
                 }
-                state.posts.push(newPost);
+                stateCopy.posts.push(newPost);
             }
-            return state
+            return stateCopy
+        }
 
-        case UPDATE_NEW_POST_TEXT:
+        case UPDATE_NEW_POST_TEXT: {
             const postText = action.newText;
+            const stateCopy = { ...state };
 
-            state.newPostText = postText;
-            return state
-
-        case DELETE_POST:
-            state.posts.forEach(element => {
+            stateCopy.newPostText = postText;
+            return stateCopy
+        }
+        case DELETE_POST: {
+            const stateCopy = { ...state }
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.forEach(element => {
                 if (element.id === action.id) {
-                    state.posts.splice(element.id - 1, 1)
+                    stateCopy.posts.splice(element.id - 1, 1)
                     let k = 1
-                    state.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
+                    stateCopy.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
                         elem.id = k
                         k++
                     })
                 }
             });
-            return state
+            return stateCopy
+        }
 
-        case CHANGE_LIKES_COUNT:
-            const posts = state.posts
+        case CHANGE_LIKES_COUNT: {
+            const stateCopy = { ...state }
+            stateCopy.posts = [...state.posts]
+            const posts = stateCopy.posts
 
             posts.forEach(post => {
                 if (post.id === action.id) {
                     post.likesCount += 1
                 }
             });
-            return state
+            return stateCopy
+        }
 
-        default:
-            return state
+        default: {
+            const stateCopy = { ...state }
+            return stateCopy
+        }
 
     }
 }

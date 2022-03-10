@@ -36,7 +36,7 @@ const Dialogs = (props) => {
                 <div className={classes.add}>
                     <input
                         onChange={onMessageChange}
-                        value={props.newPostText}
+                        value={props.newMessageText}
                         className={classes.input}
                         placeholder='Type message' />
                     <button

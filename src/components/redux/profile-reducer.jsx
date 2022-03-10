@@ -12,12 +12,12 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
+    let stateCopy;
+
     switch (action.type) {
         case ADD_POST: {
-            const stateCopy = { ...state }
-            const text = stateCopy.newPostText;
-            stateCopy.posts = [...state.posts]
-            const postsArray = stateCopy.posts;
+            const text = state.newPostText;
+            const postsArray = state.posts;
             let id = 0;
 
             if (postsArray.length !== 0) {
@@ -30,26 +30,38 @@ const profileReducer = (state = initialState, action) => {
                     message: text,
                     likesCount: 0
                 }
-                stateCopy.posts.push(newPost);
+
+                stateCopy = {
+                    ...state,
+                    posts: [...state.posts, newPost]
+                }
             }
             return stateCopy
         }
 
         case UPDATE_NEW_POST_TEXT: {
             const postText = action.newText;
-            const stateCopy = { ...state };
 
-            stateCopy.newPostText = postText;
+            stateCopy = {
+                ...state,
+                newPostText: postText
+            }
+
             return stateCopy
         }
         case DELETE_POST: {
-            const stateCopy = { ...state }
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.forEach(element => {
+            stateCopy = {
+                ...state,
+                posts: [...state.posts]
+            }
+
+            const posts = stateCopy.posts
+
+            posts.forEach(element => {
                 if (element.id === action.id) {
-                    stateCopy.posts.splice(element.id - 1, 1)
+                    posts.splice(element.id - 1, 1)
                     let k = 1
-                    stateCopy.posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
+                    posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
                         elem.id = k
                         k++
                     })
@@ -59,8 +71,10 @@ const profileReducer = (state = initialState, action) => {
         }
 
         case CHANGE_LIKES_COUNT: {
-            const stateCopy = { ...state }
-            stateCopy.posts = [...state.posts]
+            stateCopy = {
+                ...state,
+                posts: [...state.posts]
+            }
             const posts = stateCopy.posts
 
             posts.forEach(post => {
@@ -72,8 +86,7 @@ const profileReducer = (state = initialState, action) => {
         }
 
         default: {
-            const stateCopy = { ...state }
-            return stateCopy
+            return state
         }
 
     }

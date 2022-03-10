@@ -5,7 +5,7 @@ import Main from '../main/Main';
 
 import './app.css'
 
-const App = (props) => {
+const App = () => {
     return (
         <div className='app'>
             <div className='container'>

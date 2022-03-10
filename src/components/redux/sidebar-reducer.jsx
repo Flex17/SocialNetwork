@@ -1,5 +1,3 @@
-const GET_SIDEBAR = 'GET-SIDEBAR'
-
 const initialState = {
     bar: [
         { id: 1, value: 'Profile', link: '/profile' },
@@ -17,19 +15,11 @@ const initialState = {
 
 const sidebarReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_SIDEBAR:
-
-            return state
-
         default:
             return state
     }
 }
 
-export const getSidebarActionCreator = () => {
-    return {
-        type: GET_SIDEBAR
-    }
-}
+
 
 export default sidebarReducer

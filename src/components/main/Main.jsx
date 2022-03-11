@@ -6,9 +6,10 @@ import Music from './music/Music';
 import News from './news/News';
 import Settings from './settings/Settings';
 import { Route, Routes } from 'react-router-dom';
-import NotFoundPage from './notFoundPage/NotFoundPage';
+// import NotFoundPage from './notFoundPage/NotFoundPage';
 
 import './main.css'
+import Users from './sidebar/users/Users';
 
 const Main = () => {
     return (
@@ -17,12 +18,13 @@ const Main = () => {
                 <SideBarContainer />
                 <div className="main-content">
                     <Routes>
-                        <Route path='/profile' element={<Profile />} />
+                        <Route path='*' element={<Profile />} />
                         <Route path='/dialogs/*' element={<DialogsContainer />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />
-                        <Route path='*' element={<NotFoundPage />} />
+                        <Route path='/users' element={<Users />} />
+                        {/* <Route path='*' element={<NotFoundPage />} /> */}
                     </Routes>
                 </div>
             </div>

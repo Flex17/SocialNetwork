@@ -9,7 +9,7 @@ import { Route, Routes } from 'react-router-dom';
 // import NotFoundPage from './notFoundPage/NotFoundPage';
 
 import './main.css'
-import Users from './sidebar/users/Users';
+import UsersContainer from './sidebar/users/UsersContainer';
 
 const Main = () => {
     return (
@@ -23,7 +23,7 @@ const Main = () => {
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />
                         <Route path='/news' element={<News />} />
-                        <Route path='/users' element={<Users />} />
+                        <Route path='/users' element={<UsersContainer />} />
                         {/* <Route path='*' element={<NotFoundPage />} /> */}
                     </Routes>
                 </div>

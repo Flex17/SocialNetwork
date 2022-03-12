@@ -8,3 +8,19 @@
     padding: 20px;
 }
 
+.item {
+    display: block;
+    color: black;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.active{
+    font-weight: 700;
+    display: block;
+    color: black;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+

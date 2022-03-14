@@ -16,7 +16,7 @@ const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST: {
-            const text = state.newPostText;
+            const text = state.newPostText.trim(); //* срезает все лишние пробелы
             const postsArray = state.posts;
             let id = 0;
 
@@ -34,6 +34,11 @@ const profileReducer = (state = initialState, action) => {
                 stateCopy = {
                     ...state,
                     posts: [...state.posts, newPost]
+                }
+            } else {
+                stateCopy = {
+                    ...state,
+                    newPostText: ''
                 }
             }
             return stateCopy
@@ -73,15 +78,15 @@ const profileReducer = (state = initialState, action) => {
         case CHANGE_LIKES_COUNT: {
             stateCopy = {
                 ...state,
-                posts: [...state.posts]
+                posts: state.posts.map(post => {
+                    if (post.id === action.id) {
+                        post.likesCount += 1
+                        return { ...post, likesCount: post.likesCount + 1 }
+                    }
+                    return post
+                })
             }
-            const posts = stateCopy.posts
 
-            posts.forEach(post => {
-                if (post.id === action.id) {
-                    post.likesCount += 1
-                }
-            });
             return stateCopy
         }
 

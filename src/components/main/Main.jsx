@@ -9,7 +9,7 @@ import { Route, Routes } from 'react-router-dom';
 // import NotFoundPage from './notFoundPage/NotFoundPage';
 
 import './main.css'
-import UsersContainer from './sidebar/users/UsersContainer';
+import UsersContainer from './users/UsersContainer';
 
 const Main = () => {
     return (

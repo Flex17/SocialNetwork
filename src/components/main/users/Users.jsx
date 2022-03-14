@@ -1,15 +1,13 @@
+import axios from 'axios'
 import classes from './users.module.css'
 
 const Users = (props) => {
     if (props.users.length === 0) {
-        props.onSetUsers([
-            { id: 1, name: 'Vlad', surname: 'Platov', status: 'I`m fine', country: 'Russia', city: 'Kurgan', followed: false },
-            { id: 2, name: 'Alex', surname: 'Ivanov', status: 'I`m fine', country: 'Ukraine', city: 'Kiev', followed: false },
-            { id: 3, name: 'Egor', surname: 'Petrov', status: 'I`m fine', country: 'Belarus', city: 'Minsk', followed: false },
-            { id: 4, name: 'Andrey', surname: 'Sidorov', status: 'I`m fine', country: 'Russia', city: 'Kurgan', followed: false }
-        ])
+        axios.get('http://localhost:8000/data')
+            .then(response => {
+                props.onSetUsers(response.data)
+            });
     }
-
     const onFollow = (id) => {
         props.onFollow(id)
     }
@@ -20,6 +18,7 @@ const Users = (props) => {
                     <div className={classes.avatar}></div>
                     <button
                         className={classes.follow}
+                        id={user.id}
                         onClick={() => { onFollow(user.id) }}>
                         {user.followed ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>

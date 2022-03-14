@@ -1,29 +1,6 @@
 import SideBar from './Sidebar';
 import { connect } from 'react-redux';
-
-// const SideBarContainer = () => {
-
-//     return (
-//         <StoreContext.Consumer>
-//             {
-//                 (store) => {
-//                     const state = store.getState().sidebar
-
-//                     const getBar = () => {
-//                         return state.bar
-//                     }
-
-//                     const getFriends = () => {
-//                         return state.friends
-//                     }
-//                     return (
-//                         <SideBar onGetBar={getBar} onGetFriends={getFriends} />
-//                     )
-//                 }
-//             }
-//         </StoreContext.Consumer>
-//     )
-// }
+import { setSidebar } from './../../redux/sidebar-reducer';
 
 const mapStateToProps = (state) => {
     const sidebar = state.sidebar
@@ -34,7 +11,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        onSetSidebar: (bar, friends) => {
+            const setSidebarAction = setSidebar(bar, friends)
+
+            dispatch(setSidebarAction)
+        }
+    }
 }
 
 const SideBarContainer = connect(mapStateToProps, mapDispatchToProps)(SideBar)

@@ -1,40 +1,148 @@
 {
-    "data": [
-        {
-            "id": 1,
-            "name": "Vlad",
-            "surname": "Platov",
-            "status": "I`m fine",
-            "country": "Russia",
-            "city": "Kurgan",
-            "followed": false
+    "data": {
+        "users": [
+            {
+                "id": 1,
+                "name": "Vlad",
+                "surname": "Platov",
+                "status": "I`m fine",
+                "country": "Russia",
+                "city": "Kurgan",
+                "followed": false
+            },
+            {
+                "id": 2,
+                "name": "Alex",
+                "surname": "Ivanov",
+                "status": "I`m fine",
+                "country": "Ukraine",
+                "city": "Kiev",
+                "followed": false
+            },
+            {
+                "id": 3,
+                "name": "Egor",
+                "surname": "Petrov",
+                "status": "I`m fine",
+                "country": "Belarus",
+                "city": "Minsk",
+                "followed": false
+            },
+            {
+                "id": 4,
+                "name": "Andrey",
+                "surname": "Sidorov",
+                "status": "I`m fine",
+                "country": "Russia",
+                "city": "Kurgan",
+                "followed": false
+            }
+        ],
+        "posts": [
+            {
+                "id": 1,
+                "message": "Hello, it`s my first post",
+                "likesCount": 0
+            },
+            {
+                "id": 2,
+                "message": "Hi, how are you?",
+                "likesCount": 0
+            }
+        ],
+        "sidebar": {
+            "bar": [
+                {
+                    "id": 1,
+                    "value": "Profile",
+                    "link": "/"
+                },
+                {
+                    "id": 2,
+                    "value": "Messages",
+                    "link": "/dialogs"
+                },
+                {
+                    "id": 3,
+                    "value": "News",
+                    "link": "/news"
+                },
+                {
+                    "id": 4,
+                    "value": "Music",
+                    "link": "/music"
+                },
+                {
+                    "id": 5,
+                    "value": "Settings",
+                    "link": "/settings"
+                },
+                {
+                    "id": 6,
+                    "value": "Users",
+                    "link": "/users"
+                }
+            ],
+            "friends": [
+                {
+                    "id": 1,
+                    "name": "Andrew"
+                },
+                {
+                    "id": 2,
+                    "name": "Sasha"
+                },
+                {
+                    "id": 3,
+                    "name": "Alex"
+                }
+            ]
         },
-        {
-            "id": 2,
-            "name": "Alex",
-            "surname": "Ivanov",
-            "status": "I`m fine",
-            "country": "Ukraine",
-            "city": "Kiev",
-            "followed": false
-        },
-        {
-            "id": 3,
-            "name": "Egor",
-            "surname": "Petrov",
-            "status": "I`m fine",
-            "country": "Belarus",
-            "city": "Minsk",
-            "followed": false
-        },
-        {
-            "id": 4,
-            "name": "Andrey",
-            "surname": "Sidorov",
-            "status": "I`m fine",
-            "country": "Russia",
-            "city": "Kurgan",
-            "followed": false
+        "messagesPage": {
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Hello"
+                },
+                {
+                    "id": 2,
+                    "message": "How are you?"
+                },
+                {
+                    "id": 3,
+                    "message": "I`m fine"
+                },
+                {
+                    "id": 4,
+                    "message": "I`m too"
+                }
+            ],
+            "dialogs": [
+                {
+                    "id": 1,
+                    "name": "Vlad"
+                },
+                {
+                    "id": 2,
+                    "name": "Lera"
+                },
+                {
+                    "id": 3,
+                    "name": "Egor"
+                },
+                {
+                    "id": 4,
+                    "name": "Dima"
+                },
+                {
+                    "id": 5,
+                    "name": "Maxim"
+                },
+                {
+                    "id": 6,
+                    "name": "Sasha"
+                }
+            ]
         }
-    ]
+    }
 }

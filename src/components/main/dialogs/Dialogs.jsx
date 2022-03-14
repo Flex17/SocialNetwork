@@ -3,8 +3,19 @@ import React from "react";
 import classes from './dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
+import axios from "axios";
 
 const Dialogs = (props) => {
+
+    if (props.dialogs.length === 0 && props.messages.length === 0) {
+        axios.get('http://localhost:8000/data')
+            .then(response => {
+                const data = response.data.messagesPage
+
+                props.onSetMessagesPage(data.messages, data.dialogs)
+            })
+    }
+
     const dialogsElements =
         props.dialogs.map(dialog => {
             return <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />

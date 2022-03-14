@@ -2,12 +2,10 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const DELETE_POST = 'DELETE-POST'
 const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
+const SET_POSTS = 'SET-POSTS'
 
 const initialState = {
-    posts: [
-        { id: 1, message: 'Hello, it`s my first post', likesCount: 0 },
-        { id: 2, message: 'Hi, how are you?', likesCount: 0 }
-    ],
+    posts: [],
     newPostText: ''
 }
 
@@ -80,7 +78,6 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts.map(post => {
                     if (post.id === action.id) {
-                        post.likesCount += 1
                         return { ...post, likesCount: post.likesCount + 1 }
                     }
                     return post
@@ -88,6 +85,13 @@ const profileReducer = (state = initialState, action) => {
             }
 
             return stateCopy
+        }
+
+        case SET_POSTS: {
+            return stateCopy = {
+                ...state,
+                posts: [...action.posts]
+            }
         }
 
         default: {
@@ -123,6 +127,13 @@ export const changeLikesCountActionCreator = (id) => {
     return {
         type: CHANGE_LIKES_COUNT,
         id: id
+    }
+}
+
+export const setPostsActionCreator = (posts) => {
+    return {
+        type: SET_POSTS,
+        posts: [...posts]
     }
 }
 

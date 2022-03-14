@@ -5,7 +5,7 @@ const Users = (props) => {
     if (props.users.length === 0) {
         axios.get('http://localhost:8000/data')
             .then(response => {
-                props.onSetUsers(response.data)
+                props.onSetUsers(response.data.users)
             });
     }
     const onFollow = (id) => {

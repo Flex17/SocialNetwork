@@ -1,13 +1,13 @@
 const FOLLOW = 'FOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 const initialState = {
-    users: [
-        // { id: 1, name: 'Vlad', surname: 'Platov', status: 'I`m fine', country: 'Russia', city: 'Kurgan', followed: false },
-        // { id: 2, name: 'Alex', surname: 'Ivanov', status: 'I`m fine', country: 'Ukraine', city: 'Kiev', followed: false },
-        // { id: 3, name: 'Egor', surname: 'Petrov', status: 'I`m fine', country: 'Belarus', city: 'Minsk', followed: false },
-        // { id: 4, name: 'Andrey', surname: 'Sidorov', status: 'I`m fine', country: 'Russia', city: 'Kurgan', followed: false }
-    ]
+    users: [],
+    pageSize: 6,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -25,12 +25,25 @@ const usersReducer = (state = initialState, action) => {
             }
 
             return stateCopy
+
         case SET_USERS:
             stateCopy = {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
             }
             return stateCopy
+
+        case SET_CURRENT_PAGE:
+            return stateCopy = {
+                ...state,
+                currentPage: action.currentPage
+            }
+
+        case SET_TOTAL_USERS_COUNT:
+            return stateCopy = {
+                ...state,
+                totalUsersCount: action.count
+            }
 
         default:
             return state
@@ -48,6 +61,20 @@ export const setUsersActionCreator = (users) => {
     return {
         type: SET_USERS,
         users: [...users]
+    }
+}
+
+export const setCurrentPageActionCreator = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage
+    }
+}
+
+export const setTotalUsersCountActionCreator = (count) => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        count: count
     }
 }
 

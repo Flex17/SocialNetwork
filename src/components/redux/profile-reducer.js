@@ -29,48 +29,31 @@ const profileReducer = (state = initialState, action) => {
                     likesCount: 0
                 }
 
-                stateCopy = {
+                return stateCopy = {
                     ...state,
                     posts: [...state.posts, newPost]
                 }
-            } else {
-                stateCopy = {
-                    ...state,
-                    newPostText: ''
-                }
             }
-            return stateCopy
+            return state
         }
 
         case UPDATE_NEW_POST_TEXT: {
-            const postText = action.newText;
-
             stateCopy = {
                 ...state,
-                newPostText: postText
+                newPostText: action.newText
             }
 
             return stateCopy
         }
         case DELETE_POST: {
-            stateCopy = {
+            return stateCopy = {
                 ...state,
-                posts: [...state.posts]
+                posts: state.posts.filter(post => {
+                    return (
+                        post.id !== action.id
+                    )
+                })
             }
-
-            const posts = stateCopy.posts
-
-            posts.forEach(element => {
-                if (element.id === action.id) {
-                    posts.splice(element.id - 1, 1)
-                    let k = 1
-                    posts.forEach(elem => { //* при удалении элемента каждому элементу массива задается новый id
-                        elem.id = k
-                        k++
-                    })
-                }
-            });
-            return stateCopy
         }
 
         case CHANGE_LIKES_COUNT: {

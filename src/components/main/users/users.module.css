@@ -69,3 +69,19 @@
     font-size: 18px;
     text-align: right;
 }
+
+.pages{
+    margin: 20px 0;
+    overflow-x: hidden
+}
+
+.page{
+    font-size: 17px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.selectedPage{
+    font-size: 18px;
+    font-weight: 600;
+}

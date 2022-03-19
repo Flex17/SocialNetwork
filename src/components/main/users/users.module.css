@@ -4,6 +4,12 @@
     margin-bottom: 20px;
 }
 
+.wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .userWrapper{
     display: flex;
     justify-content: space-between;

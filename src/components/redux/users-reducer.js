@@ -2,12 +2,14 @@ const FOLLOW = 'FOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS'
 
 const initialState = {
     users: [],
     pageSize: 6,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isLoading: true
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -45,6 +47,12 @@ const usersReducer = (state = initialState, action) => {
                 totalUsersCount: action.count
             }
 
+        case CHANGE_LOADING_STATUS:
+            return stateCopy = {
+                ...state,
+                isLoading: action.isLoading
+            }
+
         default:
             return state
     }
@@ -75,6 +83,13 @@ export const setTotalUsersCountActionCreator = (count) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         count: count
+    }
+}
+
+export const changeLoadingStatusActionCreator = (isLoading) => {
+    return {
+        type: CHANGE_LOADING_STATUS,
+        isLoading: isLoading
     }
 }
 

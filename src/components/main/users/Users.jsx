@@ -1,33 +1,6 @@
-import axios from 'axios'
-import { useEffect } from 'react';
 import classes from './users.module.css'
 
 const Users = (props) => {
-
-    useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}
-        &count=${props.pageSize}`)
-            .then(response => {
-                props.onSetUsers(response.data.items)
-                props.onSetTotalUsersCount(response.data.totalCount)
-            })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const onFollow = (id) => {
-        props.onFollow(id)
-    }
-
-    const onSetCurrentPage = (currentPage) => {
-        props.onSetCurrentPage(currentPage)
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}
-        &count=${props.pageSize}`)
-            .then(response => {
-                props.onSetUsers(response.data.items)
-            })
-    }
-
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
 
@@ -42,7 +15,7 @@ const Users = (props) => {
                     <div className={classes.avatar}></div>
                     <button
                         className={classes.follow}
-                        onClick={() => { onFollow(user.id) }}>
+                        onClick={() => { props.onFollow(user.id) }}>
                         {user.followed ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>
                 </div>
@@ -71,11 +44,12 @@ const Users = (props) => {
             <span
                 key={page}
                 className={`${classes.page} ${props.currentPage === page ? classes.selectedPage : ''}`}
-                onClick={() => { onSetCurrentPage(page) }}>
+                onClick={() => { props.onSetCurrentPage(page) }}>
                 {page}
             </span>
         )
     })
+
     return (
         <div>
             <div className={classes.title}>Users</div>

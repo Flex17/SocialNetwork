@@ -7,7 +7,7 @@ const AppHeader = () => {
     return (
         <header className={classes.header}>
             <div className={classes.content}>
-                <Link to='/'>
+                <Link to='/profile'>
                     <div className={classes.logo}></div>
                 </Link>
             </div>

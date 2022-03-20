@@ -15,9 +15,9 @@ const Posts = (props) => {
             )
         })
 
-    const onPostChange = (e) => {
+    const onUpdateNewPostText = (e) => {
         const text = e.target.value;
-        props.onPostChange(text)
+        props.updateNewPostText(text)
     }
 
     return (
@@ -25,12 +25,12 @@ const Posts = (props) => {
             <div className={classes.title}>My Posts</div>
             <div className={classes.write}>
                 <input
-                    onChange={onPostChange}
+                    onChange={onUpdateNewPostText}
                     value={props.newPostText}
                     className={classes.input}
                     placeholder='Your news...' />
                 <button
-                    onClick={() => { props.onAddPost() }}
+                    onClick={() => { props.addPost() }}
                     className={classes.btn}>Add post</button>
             </div>
             <div className={classes.block}>

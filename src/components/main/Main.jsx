@@ -1,5 +1,3 @@
-import React from 'react'
-import Profile from './profile/Profile'
 import SideBarContainer from './sidebar/SidebarContainer';
 import DialogsContainer from './dialogs/DialogsContainer';
 import Music from './music/Music';
@@ -10,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import './main.css'
 import UsersContainer from './users/UsersContainer';
+import ProfileContainer from './profile/ProfileContainer';
 
 const Main = () => {
     return (
@@ -18,7 +17,8 @@ const Main = () => {
                 <SideBarContainer />
                 <div className="main-content">
                     <Routes>
-                        <Route path='*' element={<Profile />} />
+                        <Route path='*' element={<ProfileContainer />} />
+                        <Route path='/profile/*' element={<ProfileContainer />} />
                         <Route path='/dialogs/*' element={<DialogsContainer />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/music' element={<Music />} />

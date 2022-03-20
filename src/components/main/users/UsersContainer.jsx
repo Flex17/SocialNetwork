@@ -5,12 +5,13 @@ import Users from './Users';
 import Spinner from '../../common/Spinner/Spinner';
 
 import {
-    followActionCreator,
-    setCurrentPageActionCreator,
-    setUsersActionCreator,
-    setTotalUsersCountActionCreator,
-    changeLoadingStatusActionCreator
+    follow,
+    setCurrentPage,
+    setUsers,
+    setTotalUsersCount,
+    changeLoadingStatus
 } from '../../redux/users-reducer';
+import { setCurrendId } from './../../redux/profile-reducer';
 
 import classes from './users.module.css'
 
@@ -21,10 +22,10 @@ const UsersContainer = (props) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}
         &count=${props.pageSize}`)
             .then(response => {
-                props.onChangeLoadingStatus(true)
-                props.onSetUsers(response.data.items)
-                props.onSetTotalUsersCount(response.data.totalCount)
-                props.onChangeLoadingStatus(false)
+                props.changeLoadingStatus(true)
+                props.setUsers(response.data.items)
+                props.setTotalUsersCount(response.data.totalCount)
+                props.changeLoadingStatus(false)
             })
             .catch(error => {
                 console.log(error)
@@ -32,15 +33,15 @@ const UsersContainer = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const onSetCurrentPage = (currentPage) => {
-        props.onSetCurrentPage(currentPage)
+    const setCurrentPage = (currentPage) => {
+        props.setCurrentPage(currentPage)
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}
         &count=${props.pageSize}`)
             .then(response => {
-                props.onChangeLoadingStatus(true)
-                props.onSetUsers(response.data.items)
-                props.onChangeLoadingStatus(false)
+                props.changeLoadingStatus(true)
+                props.setUsers(response.data.items)
+                props.changeLoadingStatus(false)
             })
             .catch(error => {
                 console.log(error)
@@ -58,7 +59,8 @@ const UsersContainer = (props) => {
                     users={props.users}
                     currentPage={props.currentPage}
                     onFollow={props.onFollow}
-                    onSetCurrentPage={onSetCurrentPage}
+                    setCurrentPage={setCurrentPage}
+                    setCurrentId={props.setCurrendId}
                 />
             }
 
@@ -79,38 +81,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onFollow: (id) => {
-            const followAction = followActionCreator(id)
-
-            dispatch(followAction)
-        },
-
-        onSetUsers: (users) => {
-            const setUsersAction = setUsersActionCreator(users)
-
-            dispatch(setUsersAction)
-        },
-
-        onSetCurrentPage: (currentPage) => {
-            const setCurrentPageAction = setCurrentPageActionCreator(currentPage)
-
-            dispatch(setCurrentPageAction)
-        },
-
-        onSetTotalUsersCount: (count) => {
-            const setTotalUsersCountAction = setTotalUsersCountActionCreator(count)
-
-            dispatch(setTotalUsersCountAction)
-        },
-
-        onChangeLoadingStatus: (isLoading) => {
-            const changeLoadingAction = changeLoadingStatusActionCreator(isLoading)
-
-            dispatch(changeLoadingAction)
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    changeLoadingStatus,
+    setCurrendId
+})(UsersContainer)

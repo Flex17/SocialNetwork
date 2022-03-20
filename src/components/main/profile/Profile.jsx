@@ -5,11 +5,11 @@ import Wallpaper from './wallpaper/Wallpaper';
 
 import classes from './profile.module.css'
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={classes.profile}>
             <Wallpaper />
-            <Info />
+            <Info {...props} />
             <PostsContainer />
         </div>
     )

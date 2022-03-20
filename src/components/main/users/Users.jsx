@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import classes from './users.module.css'
 
 const Users = (props) => {
@@ -12,10 +13,12 @@ const Users = (props) => {
         return (
             <div className={classes.userWrapper} key={user.id}>
                 <div className={classes.user}>
-                    <div className={classes.avatar}></div>
+                    <NavLink to={'/profile/' + user.id} onClick={() => { props.setCurrentId(user.id) }}>
+                        <div className={classes.avatar}></div>
+                    </NavLink>
                     <button
                         className={classes.follow}
-                        onClick={() => { props.onFollow(user.id) }}>
+                        onClick={() => { props.follow(user.id) }}>
                         {user.followed ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>
                 </div>
@@ -44,7 +47,7 @@ const Users = (props) => {
             <span
                 key={page}
                 className={`${classes.page} ${props.currentPage === page ? classes.selectedPage : ''}`}
-                onClick={() => { props.onSetCurrentPage(page) }}>
+                onClick={() => { props.setCurrentPage(page) }}>
                 {page}
             </span>
         )

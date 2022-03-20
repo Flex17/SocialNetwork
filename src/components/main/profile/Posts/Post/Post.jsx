@@ -3,14 +3,14 @@ import React from "react";
 import classes from './post.module.css'
 
 const Post = (props) => {
-    const changeLikesCount = () => {
+    const onChangeLikesCount = () => {
         const id = props.id
-        props.onChangeLikesCount(id)
+        props.changeLikesCount(id)
     }
 
-    const deletePost = () => {
+    const onDeletePost = () => {
         const id = props.id
-        props.onDeletePost(id)
+        props.deletePost(id)
     }
 
     return (
@@ -18,11 +18,11 @@ const Post = (props) => {
             <div className={classes.post_content}>
                 <div className={classes.avatar}>{props.img}</div>
                 <div className={classes.text}>{props.text}</div>
-                <div className={classes.likesCount} onClick={changeLikesCount}>
+                <div className={classes.likesCount} onClick={onChangeLikesCount}>
                     <span>{props.likesCount}</span>
                 </div>
             </div>
-            <div className={classes.delete} id={props.id} onClick={deletePost}></div>
+            <div className={classes.delete} id={props.id} onClick={onDeletePost}></div>
         </div>
     )
 }

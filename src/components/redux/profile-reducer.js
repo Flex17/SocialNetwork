@@ -1,138 +1,58 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const DELETE_POST = 'DELETE-POST'
-const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
-const SET_POSTS = 'SET-POSTS'
-const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS'
+const SET_CURRENT_ID = 'SET_CURRENT_ID'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 const initialState = {
-    posts: [],
-    newPostText: '',
-    isLoading: true
+    name: 'Vlad',
+    about: 'I`m junior frontend developer',
+    contacts: 'https://github.com/Flex17',
+    currentId: undefined,
+    isLookingForAJob: true,
+    lookingForAJobDescription: 'Let`s send me offer'
 }
 
 const profileReducer = (state = initialState, action) => {
     let stateCopy;
-
     switch (action.type) {
-        case ADD_POST: {
-            const text = state.newPostText.trim(); //* срезает все лишние пробелы
-            const postsArray = state.posts;
-            let id = 0;
-
-            if (postsArray.length !== 0) {
-                id = postsArray[postsArray.length - 1].id + 1
-            }
-
-            if (text !== '') {
-                const newPost = {
-                    id: id,
-                    message: text,
-                    likesCount: 0
-                }
-
-                return stateCopy = {
-                    ...state,
-                    posts: [...state.posts, newPost]
-                }
-            }
-            return state
-        }
-
-        case UPDATE_NEW_POST_TEXT: {
+        case SET_CURRENT_ID: {
             stateCopy = {
                 ...state,
-                newPostText: action.newText
+                currentId: action.currentId
             }
-
-            return stateCopy
-        }
-        case DELETE_POST: {
-            return stateCopy = {
-                ...state,
-                posts: state.posts.filter(post => {
-                    return (
-                        post.id !== action.id
-                    )
-                })
-            }
-        }
-
-        case CHANGE_LIKES_COUNT: {
-            stateCopy = {
-                ...state,
-                posts: state.posts.map(post => {
-                    if (post.id === action.id) {
-                        return { ...post, likesCount: post.likesCount + 1 }
-                    }
-                    return post
-                })
-            }
-
             return stateCopy
         }
 
-        case SET_POSTS: {
+        case SET_USER_PROFILE: {
             return stateCopy = {
                 ...state,
-                posts: [...action.posts]
+                name: action.name,
+                about: action.about,
+                isLookingForAJob: action.isLookingForAJob,
+                lookingForAJobDescription: action.lookingForAJobDescription,
+                contacts: action.contacts
             }
         }
 
-        case CHANGE_LOADING_STATUS:
-            return stateCopy = {
-                ...state,
-                isLoading: action.isLoading
-            }
-
-        default: {
+        default:
             return state
-        }
-
     }
 }
 
-export const addPostActionCreator = () => {
+export const setCurrendId = (id) => {
     return {
-        type: ADD_POST
+        type: SET_CURRENT_ID,
+        currentId: id
     }
 }
 
-export const updateNewPostTextActionCreator = (text) => {
+export const setUserProfile = (data) => {
     return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
+        type: SET_USER_PROFILE,
+        name: data.fullName,
+        about: data.aboutMe,
+        isLookingForAJob: data.lookingForAJob,
+        lookingForAJobDescription: data.lookingForAJobDescription,
+        contacts: data.contacts.github
     }
 }
 
-
-export const deletePostActionCreator = (id) => {
-    return {
-        type: DELETE_POST,
-        id: id
-    }
-}
-
-
-export const changeLikesCountActionCreator = (id) => {
-    return {
-        type: CHANGE_LIKES_COUNT,
-        id: id
-    }
-}
-
-export const setPostsActionCreator = (posts) => {
-    return {
-        type: SET_POSTS,
-        posts: [...posts]
-    }
-}
-
-export const changeLoadingStatusActionCreator = (isLoading) => {
-    return {
-        type: CHANGE_LOADING_STATUS,
-        isLoading: isLoading
-    }
-}
-
-export default profileReducer;
+export default profileReducer

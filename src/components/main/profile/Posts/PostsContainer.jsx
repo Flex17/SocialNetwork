@@ -5,11 +5,11 @@ import Posts from './Posts';
 import Spinner from '../../../common/Spinner/Spinner';
 
 import {
-    updateNewPostTextActionCreator,
-    addPostActionCreator,
-    setPostsActionCreator,
-    changeLoadingStatusActionCreator
-} from './../../../redux/profile-reducer';
+    updateNewPostText,
+    addPost,
+    setPosts,
+    changeLoadingStatus
+} from '../../../redux/posts-reducer';
 
 
 import classes from './posts.module.css'
@@ -18,8 +18,8 @@ const PostsContainer = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/data')
             .then(response => {
-                props.onSetPosts(response.data.posts)
-                props.onChangeLoadingStatus(false)
+                props.setPosts(response.data.posts)
+                props.changeLoadingStatus(false)
             })
             .catch(error => {
                 console.log(error)
@@ -36,8 +36,8 @@ const PostsContainer = (props) => {
                     <Posts
                         posts={props.posts}
                         newPostText={props.newPostText}
-                        onPostChange={props.onPostChange}
-                        onAddPost={props.onAddPost}
+                        updateNewPostText={props.updateNewPostText}
+                        addPost={props.addPost}
                     />
             }
         </div>
@@ -45,39 +45,17 @@ const PostsContainer = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    const profilePage = state.profilePage
+    const posts = state.posts
     return {
-        posts: profilePage.posts,
-        newPostText: profilePage.newPostText,
-        isLoading: profilePage.isLoading
+        posts: posts.posts,
+        newPostText: posts.newPostText,
+        isLoading: posts.isLoading
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAddPost: () => {
-            const addPostAction = addPostActionCreator()
-            const updateNewPostTextAction = updateNewPostTextActionCreator('')
-
-            dispatch(addPostAction);
-            dispatch(updateNewPostTextAction)
-        },
-        onPostChange: (text) => {
-            const updateNewPostTextAction = updateNewPostTextActionCreator(text)
-
-            dispatch(updateNewPostTextAction)
-        },
-        onSetPosts: (posts) => {
-            const setPostsAction = setPostsActionCreator(posts)
-
-            dispatch(setPostsAction)
-        },
-        onChangeLoadingStatus: (isLoading) => {
-            const changeLoadingAction = changeLoadingStatusActionCreator(isLoading)
-
-            dispatch(changeLoadingAction)
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer)
+export default connect(mapStateToProps, {
+    addPost,
+    updateNewPostText,
+    setPosts,
+    changeLoadingStatus
+})(PostsContainer)

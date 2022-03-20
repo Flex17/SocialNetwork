@@ -3,10 +3,12 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const DELETE_POST = 'DELETE-POST'
 const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
 const SET_POSTS = 'SET-POSTS'
+const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS'
 
 const initialState = {
     posts: [],
-    newPostText: ''
+    newPostText: '',
+    isLoading: true
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -77,6 +79,12 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case CHANGE_LOADING_STATUS:
+            return stateCopy = {
+                ...state,
+                isLoading: action.isLoading
+            }
+
         default: {
             return state
         }
@@ -117,6 +125,13 @@ export const setPostsActionCreator = (posts) => {
     return {
         type: SET_POSTS,
         posts: [...posts]
+    }
+}
+
+export const changeLoadingStatusActionCreator = (isLoading) => {
+    return {
+        type: CHANGE_LOADING_STATUS,
+        isLoading: isLoading
     }
 }
 

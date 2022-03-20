@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import Users from './Users';
 import Spinner from '../../common/Spinner/Spinner';
+
 import {
     followActionCreator,
     setCurrentPageActionCreator,

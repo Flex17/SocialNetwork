@@ -1,6 +1,10 @@
-import { changeLikesCountActionCreator, deletePostActionCreator } from './../../../../redux/profile-reducer';
-import Post from "./Post";
 import { connect } from 'react-redux';
+import Post from "./Post";
+
+import {
+    changeLikesCountActionCreator,
+    deletePostActionCreator
+} from './../../../../redux/profile-reducer';
 
 const mapStateToProps = (state) => {
     return {}

@@ -1,25 +1,19 @@
-import axios from "axios";
-import React from "react";
 import PostContainer from "./Post/PostContainer";
 
 import classes from './posts.module.css'
 
 const Posts = (props) => {
-    if (props.posts.length === 0) {
-        axios.get('http://localhost:8000/data')
-            .then(response => {
-                props.onSetPosts(response.data.posts)
-            })
-    }
-
     const postElements =
         props.posts.map(post => {
-            return <PostContainer text={post.message} key={post.id} likesCount={post.likesCount} id={post.id} />
+            return (
+                <PostContainer
+                    text={post.message}
+                    key={post.id}
+                    likesCount={post.likesCount}
+                    id={post.id}
+                />
+            )
         })
-
-    const onAddPost = () => {
-        props.onAddPost()
-    }
 
     const onPostChange = (e) => {
         const text = e.target.value;
@@ -36,7 +30,7 @@ const Posts = (props) => {
                     className={classes.input}
                     placeholder='Your news...' />
                 <button
-                    onClick={onAddPost}
+                    onClick={() => { props.onAddPost() }}
                     className={classes.btn}>Add post</button>
             </div>
             <div className={classes.block}>

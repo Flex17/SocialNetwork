@@ -13,7 +13,7 @@ const Users = (props) => {
         return (
             <div className={classes.userWrapper} key={user.id}>
                 <div className={classes.user}>
-                    <NavLink to={'/profile/' + user.id} onClick={() => { props.setCurrentId(user.id) }}>
+                    <NavLink to={'/profile/' + user.id}>
                         <div className={classes.avatar}></div>
                     </NavLink>
                     <button

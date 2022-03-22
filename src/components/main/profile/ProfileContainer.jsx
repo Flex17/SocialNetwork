@@ -4,14 +4,14 @@ import { connect } from "react-redux"
 import Profile from "./Profile"
 
 import { setUserProfile } from "../../redux/profile-reducer"
+import { useParams } from "react-router-dom"
 
 
 const ProfileContainer = (props) => {
+    const { id } = useParams()
     useEffect(() => {
-        if (!props.currentId) {
-
-        } else {
-            axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + props.currentId)
+        if (id) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + id)
                 .then(response => {
                     props.setUserProfile(response.data)
                 })

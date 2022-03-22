@@ -11,7 +11,6 @@ import {
     setTotalUsersCount,
     changeLoadingStatus
 } from '../../redux/users-reducer';
-import { setCurrendId } from './../../redux/profile-reducer';
 
 import classes from './users.module.css'
 
@@ -58,9 +57,8 @@ const UsersContainer = (props) => {
                     pageSize={props.pageSize}
                     users={props.users}
                     currentPage={props.currentPage}
-                    onFollow={props.onFollow}
+                    follow={props.follow}
                     setCurrentPage={setCurrentPage}
-                    setCurrentId={props.setCurrendId}
                 />
             }
 
@@ -86,6 +84,5 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    changeLoadingStatus,
-    setCurrendId
+    changeLoadingStatus
 })(UsersContainer)

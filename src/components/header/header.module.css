@@ -3,6 +3,8 @@
 }
 .content{
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .logo{
@@ -10,4 +12,26 @@
     height: 30px;
     background-color: yellow;
     border-radius: 50%;
+}
+
+.signIn{
+    background-color: transparent;
+    font-size: 17px;
+    border: 1px solid rgb(167, 158, 158);
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+}
+
+.signIn:hover{
+    transition: all 0.5s;
+    color: rgb(70, 69, 69);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.login{
+    padding: 6px;
+    color: black;
 }

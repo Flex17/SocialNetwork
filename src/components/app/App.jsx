@@ -1,5 +1,5 @@
 import React from 'react';
-import AppHeader from '../header/Header';
+import HeaderContainer from '../header/HeaderContainer';
 import Main from '../main/Main';
 
 
@@ -9,7 +9,7 @@ const App = () => {
     return (
         <div className='app'>
             <div className='container'>
-                <AppHeader />
+                <HeaderContainer />
                 <Main />
             </div>
         </div>

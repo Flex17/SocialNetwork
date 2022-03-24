@@ -4,13 +4,15 @@ import messagesReducer from './messages-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer from './users-reducer';
 import profileReducer from "./profile-reducer";
+import authReducer from "./auth-reducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
     posts: postsReducer,
     messagesPage: messagesReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 const store = createStore(reducers);

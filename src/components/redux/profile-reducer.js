@@ -9,11 +9,10 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
-    let stateCopy;
+
     switch (action.type) {
         case SET_USER_PROFILE:
-            // eslint-disable-next-line no-unused-vars
-            return stateCopy = {
+            return {
                 ...state,
                 name: action.name,
                 about: action.about,
@@ -21,7 +20,6 @@ const profileReducer = (state = initialState, action) => {
                 lookingForAJobDescription: action.lookingForAJobDescription,
                 contacts: action.contacts
             }
-
         default:
             return state
     }

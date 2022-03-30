@@ -6,6 +6,7 @@ import Spinner from '../../common/Spinner/Spinner';
 
 import {
     follow,
+    unFollow,
     setCurrentPage,
     setUsers,
     setTotalUsersCount,
@@ -19,7 +20,12 @@ const UsersContainer = (props) => {
 
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}
-        &count=${props.pageSize}`)
+        &count=${props.pageSize}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'b899cce5-feae-49bd-b15d-e3d3d7fb29a3'
+            }
+        })
             .then(response => {
                 props.changeLoadingStatus(true)
                 props.setUsers(response.data.items)
@@ -36,7 +42,12 @@ const UsersContainer = (props) => {
         props.setCurrentPage(currentPage)
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}
-        &count=${props.pageSize}`)
+        &count=${props.pageSize}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'b899cce5-feae-49bd-b15d-e3d3d7fb29a3'
+            }
+        })
             .then(response => {
                 props.changeLoadingStatus(true)
                 props.setUsers(response.data.items)
@@ -58,6 +69,7 @@ const UsersContainer = (props) => {
                     users={props.users}
                     currentPage={props.currentPage}
                     follow={props.follow}
+                    unFollow={props.unFollow}
                     setCurrentPage={setCurrentPage}
                 />
             }
@@ -81,6 +93,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     follow,
+    unFollow,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,

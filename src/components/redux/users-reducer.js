@@ -1,4 +1,5 @@
 const FOLLOW = 'FOLLOW'
+const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
@@ -13,42 +14,49 @@ const initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
-    let stateCopy;
     switch (action.type) {
         case FOLLOW:
-            stateCopy = {
+            return {
                 ...state,
                 users: state.users.map(user => {
                     if (user.id === action.id) {
-                        return { ...user, followed: !user.followed }
+                        return { ...user, followed: true }
                     }
                     return user
                 })
             }
 
-            return stateCopy
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === action.id) {
+                        return { ...user, followed: false }
+                    }
+                    return user
+                })
+            }
 
         case SET_USERS:
-            stateCopy = {
+            return {
                 ...state,
                 users: [...action.users]
             }
-            return stateCopy
 
         case SET_CURRENT_PAGE:
-            return stateCopy = {
+            return {
                 ...state,
                 currentPage: action.currentPage
             }
 
         case SET_TOTAL_USERS_COUNT:
-            return stateCopy = {
+            return {
                 ...state,
                 totalUsersCount: action.count
             }
 
         case CHANGE_LOADING_STATUS:
-            return stateCopy = {
+            return {
                 ...state,
                 isLoading: action.isLoading
             }
@@ -61,7 +69,16 @@ const usersReducer = (state = initialState, action) => {
 export const follow = (id) => {
     return {
         type: FOLLOW,
-        id: id
+        id: id,
+        followed: true
+    }
+}
+
+export const unFollow = (id) => {
+    return {
+        type: UNFOLLOW,
+        id: id,
+        followed: false
     }
 }
 

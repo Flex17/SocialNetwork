@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import axios from "axios";
 import Posts from './Posts';
 import Spinner from '../../../common/Spinner/Spinner';
 
+import { userAPI } from '../../../../api/api';
 import {
     updateNewPostText,
     addPost,
@@ -16,9 +16,9 @@ import classes from './posts.module.css'
 
 const PostsContainer = (props) => {
     useEffect(() => {
-        axios.get('http://localhost:8000/data')
-            .then(response => {
-                props.setPosts(response.data.posts)
+        userAPI.getPosts()
+            .then(data => {
+                props.setPosts(data.posts)
                 props.changeLoadingStatus(false)
             })
             .catch(error => {

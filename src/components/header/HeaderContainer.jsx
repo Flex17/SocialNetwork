@@ -1,18 +1,16 @@
-
-import axios from 'axios';
 import { useEffect } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { setAuthUserData } from './../redux/auth-reducer';
+import { userAPI } from './../../api/api';
 
 const HeaderContainer = (props) => {
 
     useEffect(() => {
-        const url = 'https://social-network.samuraijs.com/api/1.0/auth/me'
-        axios.get(url, { withCredentials: true })
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    const { id, login, email } = response.data.data
+        userAPI.authMe()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    const { id, login, email } = data.data
                     const isAuth = true
                     props.setAuthUserData(id, login, email, isAuth)
                 }

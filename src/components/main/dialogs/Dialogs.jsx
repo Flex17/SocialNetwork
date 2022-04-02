@@ -1,18 +1,20 @@
 import React from "react";
 
-import classes from './dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
-import axios from "axios";
+
+import { userAPI } from './../../../api/api';
+
+import classes from './dialogs.module.css'
 
 const Dialogs = (props) => {
 
     if (props.dialogs.length === 0 && props.messages.length === 0) {
-        axios.get('http://localhost:8000/data')
-            .then(response => {
-                const data = response.data.messagesPage
+        userAPI.getDialogs()
+            .then(data => {
+                const dialogsData = data.messagesPage
 
-                props.onSetMessagesPage(data.messages, data.dialogs)
+                props.onSetMessagesPage(dialogsData.messages, dialogsData.dialogs)
             })
     }
 

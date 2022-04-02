@@ -1,16 +1,17 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import Friends from './friends/Friends'
+import { userAPI } from "../../../api/api";
+import Friends from './friends/Friends';
+
 import classes from './sidebar.module.css';
 
 const SideBar = (props) => {
 
     useEffect(() => {
-        axios.get('http://localhost:8000/data')
-            .then(response => {
-                const data = response.data.sidebar
-                props.onSetSidebar(data.bar, data.friends)
+        userAPI.getSidebarData()
+            .then(data => {
+                const sidebarData = data.sidebar
+                props.onSetSidebar(sidebarData.bar, sidebarData.friends)
             })
             .catch(error => {
                 console.log(error)

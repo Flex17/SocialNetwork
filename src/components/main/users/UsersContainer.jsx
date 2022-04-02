@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import axios from 'axios'
 import Users from './Users';
 import Spinner from '../../common/Spinner/Spinner';
 
+import { userAPI } from '../../../api/api';
 import {
     follow,
     unFollow,
@@ -19,17 +19,11 @@ import classes from './users.module.css'
 const UsersContainer = (props) => {
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}
-        &count=${props.pageSize}`, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'b899cce5-feae-49bd-b15d-e3d3d7fb29a3'
-            }
-        })
-            .then(response => {
+        userAPI.getUsers(props.currentPage, props.pageSize)
+            .then(data => {
                 props.changeLoadingStatus(true)
-                props.setUsers(response.data.items)
-                props.setTotalUsersCount(response.data.totalCount)
+                props.setUsers(data.items)
+                props.setTotalUsersCount(data.totalCount)
                 props.changeLoadingStatus(false)
             })
             .catch(error => {
@@ -41,16 +35,10 @@ const UsersContainer = (props) => {
     const setCurrentPage = (currentPage) => {
         props.setCurrentPage(currentPage)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}
-        &count=${props.pageSize}`, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'b899cce5-feae-49bd-b15d-e3d3d7fb29a3'
-            }
-        })
-            .then(response => {
+        userAPI.getUsers(currentPage, props.pageSize)
+            .then(data => {
                 props.changeLoadingStatus(true)
-                props.setUsers(response.data.items)
+                props.setUsers(data.items)
                 props.changeLoadingStatus(false)
             })
             .catch(error => {

@@ -11,11 +11,13 @@ const Users = (props) => {
     }
 
     const follow = (id) => {
+        props.changeFollowingProgress(true, id)
         userAPI.follow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.follow(id)
                 }
+                props.changeFollowingProgress(false, id)
             })
             .catch(error => {
                 console.log(error)
@@ -23,11 +25,13 @@ const Users = (props) => {
     }
 
     const unFollow = (id) => {
+        props.changeFollowingProgress(true, id)
         userAPI.unFollow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unFollow(id)
                 }
+                props.changeFollowingProgress(false, id)
             })
             .catch(error => {
                 console.log(error)
@@ -44,14 +48,18 @@ const Users = (props) => {
                     {
                         user.followed ?
                             <button
+                                disabled={props.followingInProgress.some(id => user.id === id)}
                                 className={classes.follow}
                                 onClick={() => { unFollow(user.id) }}>
                                 UNFOLLOW
                             </button>
                             :
                             <button
+                                disabled={props.followingInProgress.some(id => user.id === id)}
                                 className={classes.follow}
-                                onClick={() => { follow(user.id) }}>
+                                onClick={() => {
+                                    follow(user.id)
+                                }}>
                                 FOLLOW
                             </button>
                     }

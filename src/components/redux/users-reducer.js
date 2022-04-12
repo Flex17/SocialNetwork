@@ -1,16 +1,18 @@
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS'
+const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS';
+const CHANGE_FOLLOWING_PROGRESS = 'CHANGE_FOLLOWING_PROGRESS';
 
 const initialState = {
     users: [],
     pageSize: 6,
     totalUsersCount: 0,
     currentPage: 1,
-    isLoading: true
+    isLoading: true,
+    followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -61,6 +63,20 @@ const usersReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
 
+        case CHANGE_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isLoading ?
+                    [
+                        ...state.followingInProgress,
+                        action.id
+                    ]
+                    :
+                    state.followingInProgress.filter(id => {
+                        return id !== action.id
+                    })
+            }
+
         default:
             return state
     }
@@ -107,6 +123,14 @@ export const changeLoadingStatus = (isLoading) => {
     return {
         type: CHANGE_LOADING_STATUS,
         isLoading: isLoading
+    }
+}
+
+export const changeFollowingProgress = (isLoading, id) => {
+    return {
+        type: CHANGE_FOLLOWING_PROGRESS,
+        isLoading: isLoading,
+        id: id
     }
 }
 

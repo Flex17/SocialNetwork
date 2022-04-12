@@ -10,7 +10,8 @@ import {
     setCurrentPage,
     setUsers,
     setTotalUsersCount,
-    changeLoadingStatus
+    changeLoadingStatus,
+    changeFollowingProgress
 } from '../../redux/users-reducer';
 
 import classes from './users.module.css'
@@ -59,6 +60,8 @@ const UsersContainer = (props) => {
                     follow={props.follow}
                     unFollow={props.unFollow}
                     setCurrentPage={setCurrentPage}
+                    changeFollowingProgress={props.changeFollowingProgress}
+                    followingInProgress={props.followingInProgress}
                 />
             }
 
@@ -75,7 +78,8 @@ const mapStateToProps = (state) => {
         pageSize: usersPage.pageSize,
         totalUsersCount: usersPage.totalUsersCount,
         currentPage: usersPage.currentPage,
-        isLoading: usersPage.isLoading
+        isLoading: usersPage.isLoading,
+        followingInProgress: usersPage.followingInProgress
     }
 }
 
@@ -85,5 +89,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    changeLoadingStatus
+    changeLoadingStatus,
+    changeFollowingProgress
 })(UsersContainer)

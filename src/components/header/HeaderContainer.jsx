@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { setAuthUserData } from './../redux/auth-reducer';
+import { setAuthUserData } from './../redux/auth-reducer.ts';
 import { userAPI } from './../../api/api';
 
 const HeaderContainer = (props) => {

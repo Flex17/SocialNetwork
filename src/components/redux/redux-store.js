@@ -3,8 +3,8 @@ import postsReducer from './posts-reducer';
 import messagesReducer from './messages-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer from './users-reducer';
-import profileReducer from "./profile-reducer";
-import authReducer from "./auth-reducer";
+import profileReducer from "./profile-reducer.ts";
+import authReducer from "./auth-reducer.ts";
 
 const reducers = combineReducers({
     profilePage: profileReducer,

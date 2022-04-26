@@ -1,6 +1,11 @@
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
+import {
+    stateType,
+    profileActionTypes,
+    dataType,
+    profileActions
+} from '../../types/profile.ts'
 
-const initialState = {
+const initialState: stateType = {
     name: 'Vlad',
     about: 'I`m junior frontend developer',
     contacts: 'https://github.com/Flex17',
@@ -8,10 +13,10 @@ const initialState = {
     lookingForAJobDescription: 'Let`s send me offer'
 }
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: profileActions): stateType => {
 
     switch (action.type) {
-        case SET_USER_PROFILE:
+        case profileActionTypes.SET_USER_PROFILE:
             return {
                 ...state,
                 name: action.name,
@@ -25,9 +30,9 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserProfile = (data) => {
+export const setUserProfile = (data: dataType): profileActions => {
     return {
-        type: SET_USER_PROFILE,
+        type: profileActionTypes.SET_USER_PROFILE,
         name: data.fullName,
         about: data.aboutMe,
         isLookingForAJob: data.lookingForAJob,

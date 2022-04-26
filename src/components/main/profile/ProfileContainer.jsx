@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { connect } from "react-redux"
-import { setUserProfile } from "../../redux/profile-reducer"
+import { setUserProfile } from "../../redux/profile-reducer.ts"
 import { userAPI } from "../../../api/api"
 import Profile from "./Profile"
 

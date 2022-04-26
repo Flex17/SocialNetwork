@@ -1,4 +1,4 @@
-import profileReducer from "./profile-reducer"
+import profileReducer from "./profile-reducer.ts"
 import messageReducer from './messages-reducer';
 import sidebarReducer from './sidebar-reducer';
 
